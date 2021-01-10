@@ -1,11 +1,9 @@
-import '../sass/App.scss';
 import React from "react";
-import Navigation from '../components/navigation';
-
+import Navigation from "../components/Navigation";
 
 function App() {
   return (
-    <div className="App">
+    <div className='font-source-serif'>
       <Navigation />
     </div>
   );

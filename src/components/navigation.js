@@ -1,18 +1,16 @@
 import React from "react";
-import apwuLogo from "../assets/apwu-g-logo.png";
-import "../sass/layout/navbar.scss";
+import NavLogoContainer from "./NavigationLogoContainer.js";
+import NavSearchBar from "./NavigationSearchBar.js";
 
 const Navigation = (prop) => {
-
-   return  (
-      <div className="nav-bar">
-        <div className="img-container">
-         <a href="#home">
-            <img src={apwuLogo} alt="apwu logo" className="apwu-logo"/>
-         </a>
-        </div>
-      </div>
-   )
-}
+  return (
+    /*This div contains all the compents in the navigation. It also
+    houses the gradient styling and the NavLogo and NavSearch component */
+    <div className='bg-gradient-to-r from-blue-500 to-blue-100'>
+      <NavLogoContainer />
+      <NavSearchBar />
+    </div>
+  );
+};
 
 export default Navigation;
