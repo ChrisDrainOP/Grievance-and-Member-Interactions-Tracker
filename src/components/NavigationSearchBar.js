@@ -8,7 +8,7 @@ const NavSearchBar = (prop) => {
       <div className='relative inline-block'>
         <input
           type='text'
-          className='absolute left-1/2 transform -translate-x-1/2'
+          className='absolute left-1/2 transform -translate-x-1/2 text-center'
         />
         <FontAwesomeIcon
           className='absolute top-1 right-16 transform -translate-x-5'
