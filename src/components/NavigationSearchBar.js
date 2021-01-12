@@ -4,16 +4,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const NavSearchBar = (prop) => {
   return (
-    <div className='pb-8 text-center'>
-      <div className='relative inline-block'>
-        <input
-          type='text'
-          className='absolute left-1/2 transform -translate-x-1/2 text-center'
-        />
-        <FontAwesomeIcon
-          className='absolute top-1 right-16 transform -translate-x-5'
-          icon={faSearch}
-        />
+    <div className='flex justify-center p-1'>
+      <div className=' text-center absolute inline-block w-1/2 flex justify-center'>
+        <FontAwesomeIcon className='absolute top-1 left-1' icon={faSearch} />
+        <input type='text' className='text-center w-full' />
       </div>
     </div>
   );
