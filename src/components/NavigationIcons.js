@@ -5,10 +5,11 @@ import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { faCogs } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import NavSearchBar from "./NavigationSearchBar";
 
 const NavIcons = (prop) => {
   return (
-    <div className=''>
+    <div className='mt-5 pb-1'>
       <ol className='flex flex-row justify-evenly'>
         <li className='border-solid border-r-2 border-black pr-2'>
           <FontAwesomeIcon
@@ -46,6 +47,7 @@ const NavIcons = (prop) => {
           <p className=''>Log off</p>
         </li>
       </ol>
+      <NavSearchBar />
     </div>
   );
 };
