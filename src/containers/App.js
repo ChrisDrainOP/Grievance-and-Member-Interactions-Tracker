@@ -1,12 +1,12 @@
 import React from "react";
-import Navigation from "../components/Navigation";
-import UnoListContainer from "./CardUnoListContainer";
+import NavigationContainer from "./NavigationContainer";
+import GrievanceListContainer from "./GrievanceListContainer";
 
 function App() {
   return (
     <div className='font-source-serif'>
-      <Navigation />
-      <UnoListContainer />
+      <NavigationContainer />
+      <GrievanceListContainer />
     </div>
   );
 }

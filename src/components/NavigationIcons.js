@@ -7,7 +7,7 @@ import { faCogs } from "@fortawesome/free-solid-svg-icons";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import NavSearchBar from "./NavigationSearchBar";
 
-const NavIcons = (prop) => {
+const NavigationIcons = (prop) => {
   return (
     <div className='mt-5 pb-1'>
       <ol className='flex flex-row justify-evenly'>
@@ -52,4 +52,4 @@ const NavIcons = (prop) => {
   );
 };
 
-export default NavIcons;
+export default NavigationIcons;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const UnoChronoList = (prop) => {
+const GrievanceChronologicalList = (prop) => {
   return (
     <div className=''>
       <ol>
@@ -13,4 +13,4 @@ const UnoChronoList = (prop) => {
   );
 };
 
-export default UnoChronoList;
+export default GrievanceChronologicalList;
