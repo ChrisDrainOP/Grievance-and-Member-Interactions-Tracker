@@ -1,12 +1,17 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const GrievanceProcedureList = (prop) => {
   return (
     <div className='mx-1 pb-2'>
       <ol className='flex flex-col space-y-2 w-3/4 m-auto'>
         <li className='flex justify-between w-4/5'>
-          <p className='inline-block'>Meetings Inbox</p>{" "}
-          <span className='bg-blue-300 px-0.5'>0</span>
+          <div className='space-x-2'>
+            <FontAwesomeIcon className='' icon={faAngleRight} />
+            <p className='inline-block'>Meetings Inbox</p>{" "}
+          </div>
+          <span className='bg-blue-300 px-0.5 '>0</span>
         </li>
         <li className='flex justify-between w-4/5'>
           <p className='inline-block'>Events and Interactions</p>{" "}
