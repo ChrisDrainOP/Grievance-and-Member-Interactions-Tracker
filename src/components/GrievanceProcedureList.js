@@ -7,9 +7,12 @@ const GrievanceProcedureList = (prop) => {
     <div className='mx-1 pb-2'>
       <ol className='flex flex-col space-y-2 w-3/4 m-auto'>
         <li className='flex justify-between w-4/5'>
-          <div className='space-x-2'>
-            <FontAwesomeIcon className='' icon={faAngleRight} />
-            <p className='inline-block'>Meetings Inbox</p>{" "}
+          <div className='relative'>
+            <FontAwesomeIcon
+              className='absolute -left-3 top-1'
+              icon={faAngleRight}
+            />
+            <p className='inline-block'>Meeting Inbox</p>{" "}
           </div>
           <span className='bg-blue-300 px-0.5 '>0</span>
         </li>
