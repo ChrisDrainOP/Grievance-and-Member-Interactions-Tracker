@@ -3,7 +3,7 @@ import GrievanceForm from "../components/GrievanceForm";
 
 const GrievanceFormContainer = () => {
   return (
-    <div>
+    <div className='bg-blue-100'>
       <GrievanceForm />
     </div>
   );
