@@ -5,16 +5,22 @@ const GrievanceForm = (prop) => {
     <div className='h-full relative'>
       <input
         type='submit'
-        className='text-4xl absolute right-5 top-2 bg-blue-100'
-        value='x'
+        className='text-1xl p-2 absolute right-5 top-2 bg-blue-100 border-green-50 border-2 rounded-lg'
+        value='Close and Save X'
       />
       <form className='pt-16 h-screen text-center'>
-        <legend className='text-2xl'>Date: Description</legend>
-        <div>
+        <legend className='text-2xl'>Name of Grievance </legend>
+        <div className='mt-3'>
           <label htmlFor='date' className=''>
             Date:
           </label>
           <input type='date' name='date' className='' />
+        </div>
+        <div className='my-3'>
+          <label htmlFor='name' className=''>
+            Subject:
+          </label>
+          <input type='text' name='name' className='' />
         </div>
         <div>
           <div>

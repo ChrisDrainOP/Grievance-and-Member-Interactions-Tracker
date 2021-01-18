@@ -1,4 +1,5 @@
 import React from "react";
+import AddNew from "./AddNew";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,9 +8,16 @@ const GrievanceTable = (prop) => {
   return (
     <div className='h-screen'>
       <div className='flex flex-row relative w-full pt-3 pl-3'>
-        <a href='http://'>
-          <FontAwesomeIcon className='' size='lg' icon={faArrowLeft} />
-        </a>
+        <div>
+          <a href='http://'>
+            <FontAwesomeIcon
+              className='relative left-4'
+              size='lg'
+              icon={faArrowLeft}
+            />
+          </a>
+          <p>Go Back</p>
+        </div>
         <div className='absolute right-1/4 text-center'>
           <a href='http://'>
             <FontAwesomeIcon className='' size='lg' icon={faPlus} />
@@ -17,10 +25,10 @@ const GrievanceTable = (prop) => {
           </a>
         </div>
       </div>
+      <AddNew />
       <div className='text-xl ml-5 my-5'>
         <h3 className='inline-block'>View All</h3>
       </div>
-
       <div>
         <table className='table-auto border-collapse w-full mx-1'>
           <tr className='border-2'>
