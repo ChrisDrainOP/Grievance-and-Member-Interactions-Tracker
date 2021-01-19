@@ -23,6 +23,25 @@ const GrievanceForm = (prop) => {
           <input type='text' name='name' className='' />
         </div>
         <div>
+          <label htmlFor='tasks'>Event Type: </label>
+          <select name='task type' id='tasks'>
+            <option value=''>Select type of task</option>
+            <option value='Member Interaction'>Member Interaction</option>
+            <option value='Step 1'>Step 1</option>
+            <option value='Step 2'>Step 2</option>
+            <option value='Step 2 to Arbitration'>Step 2 to Arbitration</option>
+            <option value='Step 3 Appeal'>Step 3 Appeal</option>
+            <option value='Information Request (RFI)'>
+              Information Request (RFI)
+            </option>
+            <option value='Extension Request'>Extension Request</option>
+            <option value='Corrections and Additions'>
+              Corrections and Additions
+            </option>
+            <option value='Miscellaneous'>Miscellaneous</option>
+          </select>
+        </div>
+        <div>
           <div>
             <label htmlFor='description'>Description:</label>
           </div>
@@ -32,18 +51,6 @@ const GrievanceForm = (prop) => {
             cols='30'
             rows='10'
           ></textarea>
-        </div>
-        <div>
-          <label htmlFor='meetings'>Meeting Type:</label>
-          <input list='meetings' />
-          <datalist type='text' name='meetings' className='' id='meetings'>
-            <option value='Request for Information(RFI)' />
-            <option value='Step 1' />
-            <option value='Step 2' />
-            <option value='Step 3' />
-            <option value='Email' />
-            <option value='Interview Request' />
-          </datalist>
         </div>
       </form>
     </div>

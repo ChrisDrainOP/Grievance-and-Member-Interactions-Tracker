@@ -34,7 +34,7 @@ const GrievanceTable = (prop) => {
           <tr className='border-2'>
             <th className='w-1/5'>Date</th>
             <th className='w-2/5'>Description</th>
-            <th className='w-2/5'>Meeting Type</th>
+            <th className='w-2/5'>Event Type</th>
           </tr>
           <tr className='border-2'>
             <td>01-05-1988</td>
