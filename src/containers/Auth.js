@@ -4,7 +4,7 @@ import LogOnForm from "../components/LogOnForm";
 
 const Authetication = (prop) => {
   return (
-    <div className='main-gradient'>
+    <div className='main-gradient h-screen'>
       <NavLogoContainer />
       <LogOnForm />
     </div>

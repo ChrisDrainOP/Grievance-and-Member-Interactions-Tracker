@@ -6,7 +6,7 @@ import { faStopwatch } from "@fortawesome/free-solid-svg-icons";
 
 const LogOnForm = (prop) => {
   return (
-    <div className='h-screen'>
+    <div className=''>
       <form className='mx-5' action=''>
         <div className='py-5'>
           <label className='block' htmlFor='username'>
@@ -59,7 +59,7 @@ const LogOnForm = (prop) => {
               />
             </div>
             <p className='pt-2 w-3/4 inline pl-8 align-middle'>
-              <span className='font-bold text-blue-900'>Always</span> Stay ahead
+              <span className='font-bold text-blue-900'>Always</span> stay ahead
               of the Grievance Timeline.
             </p>
           </li>
