@@ -12,7 +12,7 @@ const GrievanceProcedureList = (prop) => {
               className='absolute -left-3 top-1'
               icon={faAngleRight}
             />
-            <p className='inline-block'>Meeting Inbox</p>{" "}
+            <p className='inline-block'>Meetings Inbox</p>{" "}
           </div>
           <span className='task-number-icon-blue '>0</span>
         </li>

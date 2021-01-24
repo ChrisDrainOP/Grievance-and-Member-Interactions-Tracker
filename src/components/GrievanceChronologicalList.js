@@ -10,7 +10,11 @@ const GrievanceChronologicalList = (prop) => {
         </div>
         <div>
           <input type='checkbox' name='next week' className='' />
-          <li className='inline-block ml-2'>Next Week</li>
+          <li className='inline-block ml-2'>Next 5 days</li>
+        </div>
+        <div>
+          <input type='checkbox' name='next week' className='' />
+          <li className='inline-block ml-2'>Next 14 days</li>
         </div>
       </ol>
     </div>
