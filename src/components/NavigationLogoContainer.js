@@ -3,7 +3,7 @@ import apwuLogo from "../assets/apwu-g-logo.png";
 
 const NavLogoContainer = (prop) => {
   return (
-    <div className='p-1.5 flex item-center'>
+    <div className='main-gradient p-1.5 flex item-center'>
       <div className='flex flex-row space-x-9'>
         <img
           src={apwuLogo}
