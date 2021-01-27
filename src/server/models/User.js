@@ -3,22 +3,6 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const mongoSchema = new Schema({
-  googleId: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  googleToken: {
-    access_token: String,
-    refresh_token: String,
-    token_type: String,
-    expiry_date: Number,
-  },
-  slug: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   createdAt: {
     type: Date,
     required: true,
@@ -31,6 +15,10 @@ const mongoSchema = new Schema({
   isAdmin: {
     type: Boolean,
     default: false,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   displayName: String,
   avatarUrl: String,
