@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const GrievanceTable = (prop) => {
+const GrievanceTable = () => {
   return (
     <div className='h-screen'>
       <div className='flex flex-row relative w-full pt-3 pl-3'>
