@@ -17,16 +17,17 @@ const GrievanceForm = (prop) => {
           <input type='date' name='date' className='' />
         </div>
         <div className='my-3'>
-          <label htmlFor='name' className=''>
-            Subject:
+          <label htmlFor='description' className=''>
+            Description:
           </label>
-          <input type='text' name='name' className='' />
+          <input type='text' name='description' className='' />
         </div>
         <div>
           <label htmlFor='tasks'>Event Type: </label>
           <select name='task type' id='tasks'>
             <option value=''>Select type of task</option>
             <option value='Member Interaction'>Member Interaction</option>
+            <option value='Incident'>Incident</option>
             <option value='Step 1'>Step 1</option>
             <option value='Step 2'>Step 2</option>
             <option value='Step 2 to Arbitration'>Step 2 to Arbitration</option>

@@ -17,7 +17,7 @@ const GrievanceProcedureList = (prop) => {
           <span className='task-number-icon-blue '>0</span>
         </li>
         <li className='justify-procedure-list'>
-          <p className='inline-block'>Events and Interactions</p>{" "}
+          <p className='inline-block'>Incidents and Interactions</p>{" "}
           <span className='task-number-icon-blue'>0</span>
         </li>
         <li className='justify-procedure-list'>
