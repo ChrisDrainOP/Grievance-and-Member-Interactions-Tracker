@@ -7,7 +7,7 @@ const Authentication = () => {
 
   useEffect(() => {
     callBackEndAPI()
-      .then((res) => setData(res.express))
+      .then((res) => setData(res.user.avatarUrl))
       .catch((err) => console.log(err));
   });
 
@@ -25,7 +25,6 @@ const Authentication = () => {
     <div className='main-gradient h-screen'>
       <NavLogoContainer />
       <LogOnForm />
-      <h1 className='text-2xl'>{data}</h1>
     </div>
   );
 };
