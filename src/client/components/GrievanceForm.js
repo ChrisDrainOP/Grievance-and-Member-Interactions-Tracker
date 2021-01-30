@@ -5,14 +5,14 @@ import AddSubTask from "./AddSubTask";
 
 const GrievanceForm = (prop) => {
   return (
-    <div className='h-full relative'>
+    <div className='ml-3 pt-5 relative  h-full'>
       <input
         type='submit'
-        className='text-1xl p-2 absolute right-5 top-2 bg-blue-400 border-2 rounded-lg'
+        className='text-1xl p-2 absolute right-0 top-2 bg-blue-400 border-2 rounded-lg'
         value='Close and Save'
       />
-      <form className='pt-16 h-screen text-center'>
-        <div className='w-3/4 m-auto pb-4 text-left'>
+      <form className='text-center'>
+        <div className='w-3/4  pb-4 text-left'>
           <label htmlFor='add-a-task' className='inline-block'>
             <FontAwesomeIcon icon={faGripLinesVertical} />
           </label>
@@ -23,7 +23,7 @@ const GrievanceForm = (prop) => {
             className='inline-block bg-blue-100 pl-1'
           />
         </div>
-        <div className='w-3/4 m-auto'>
+        <div className='w-3/4 '>
           <label className='block text-left w-full' htmlFor='tasks'>
             Event Type:{" "}
           </label>
@@ -41,13 +41,13 @@ const GrievanceForm = (prop) => {
             <option value='Miscellaneous'>Miscellaneous</option>
           </select>
         </div>
-        <div className='w-3/4 m-auto'>
+        <div className='w-3/4 '>
           <label htmlFor='date' className='block w-full text-left'>
             Date:
           </label>
           <input type='date' name='date' className='block relative right-0' />
         </div>
-        <div className='w-3/4 m-auto'>
+        <div className='w-3/4 '>
           <label className='block w-full text-left' htmlFor='description'>
             Description:
           </label>
@@ -58,8 +58,8 @@ const GrievanceForm = (prop) => {
             rows='10'
           ></textarea>
         </div>
-        <AddSubTask />
       </form>
+      <AddSubTask />
     </div>
   );
 };
