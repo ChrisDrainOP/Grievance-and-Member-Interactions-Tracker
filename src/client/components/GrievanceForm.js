@@ -45,7 +45,7 @@ const GrievanceForm = (prop) => {
           <label htmlFor='date' className='block w-full text-left'>
             Date:
           </label>
-          <input type='date' name='date' className='block relative right-0' />
+          <input type='date' name='date' className='block' />
         </div>
         <div className='w-3/4 '>
           <label className='block w-full text-left' htmlFor='description'>
