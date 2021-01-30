@@ -1,30 +1,33 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
+import AddSubTask from "./AddSubTask";
 
 const GrievanceForm = (prop) => {
   return (
     <div className='h-full relative'>
       <input
         type='submit'
-        className='text-1xl p-2 absolute right-5 top-2 bg-blue-100 border-green-50 border-2 rounded-lg'
-        value='Close and Save X'
+        className='text-1xl p-2 absolute right-5 top-2 bg-blue-400 border-2 rounded-lg'
+        value='Close and Save'
       />
       <form className='pt-16 h-screen text-center'>
-        <legend className='text-2xl'>Name of Grievance </legend>
-        <div className='mt-3'>
-          <label htmlFor='date' className=''>
-            Date:
+        <div className='w-3/4 m-auto pb-4 text-left'>
+          <label htmlFor='add-a-task' className='inline-block'>
+            <FontAwesomeIcon icon={faGripLinesVertical} />
           </label>
-          <input type='date' name='date' className='' />
+          <input
+            type='text'
+            name='add-a-task'
+            value='Grievance Description'
+            className='inline-block bg-blue-100 pl-1'
+          />
         </div>
-        <div className='my-3'>
-          <label htmlFor='description' className=''>
-            Description:
+        <div className='w-3/4 m-auto'>
+          <label className='block text-left w-full' htmlFor='tasks'>
+            Event Type:{" "}
           </label>
-          <input type='text' name='description' className='' />
-        </div>
-        <div>
-          <label htmlFor='tasks'>Event Type: </label>
-          <select name='task type' id='tasks'>
+          <select className='block' name='task type' id='tasks'>
             <option value=''>Select type of task</option>
             <option value='Member Interaction'>Member Interaction</option>
             <option value='Incident'>Incident</option>
@@ -35,24 +38,27 @@ const GrievanceForm = (prop) => {
             <option value='Information Request (RFI)'>
               Information Request (RFI)
             </option>
-            <option value='Extension Request'>Extension Request</option>
-            <option value='Corrections and Additions'>
-              Corrections and Additions
-            </option>
             <option value='Miscellaneous'>Miscellaneous</option>
           </select>
         </div>
-        <div>
-          <div>
-            <label htmlFor='description'>Description:</label>
-          </div>
+        <div className='w-3/4 m-auto'>
+          <label htmlFor='date' className='block w-full text-left'>
+            Date:
+          </label>
+          <input type='date' name='date' className='block relative right-0' />
+        </div>
+        <div className='w-3/4 m-auto'>
+          <label className='block w-full text-left' htmlFor='description'>
+            Description:
+          </label>
           <textarea
             name='description'
-            className=''
+            className='w-full'
             cols='30'
             rows='10'
           ></textarea>
         </div>
+        <AddSubTask />
       </form>
     </div>
   );
