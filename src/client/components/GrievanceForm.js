@@ -9,7 +9,7 @@ const GrievanceForm = (prop) => {
       <input
         type='submit'
         className='text-1xl p-2 absolute right-0 top-2 bg-blue-400 border-2 rounded-lg'
-        value='Close and Save'
+        value='Save'
       />
       <form className='text-center'>
         <div className='w-3/4  pb-4 text-left'>
