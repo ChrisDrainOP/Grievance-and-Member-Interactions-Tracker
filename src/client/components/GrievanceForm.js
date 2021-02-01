@@ -5,7 +5,7 @@ import AddSubTask from "./AddSubTask";
 
 const GrievanceForm = (prop) => {
   return (
-    <div className='ml-3 pt-5 relative  h-full'>
+    <div className='mx-3 pt-5 relative  h-full'>
       <input
         type='submit'
         className='text-1xl p-2 absolute right-0 top-2 bg-blue-400 border-2 rounded-lg'
@@ -27,7 +27,7 @@ const GrievanceForm = (prop) => {
           <label className='block text-left w-full' htmlFor='tasks'>
             Event Type:{" "}
           </label>
-          <select className='block' name='task type' id='tasks'>
+          <select className='block bg-white' name='task type' id='tasks'>
             <option value=''>Select type of task</option>
             <option value='Member Interaction'>Member Interaction</option>
             <option value='Incident'>Incident</option>
@@ -45,7 +45,7 @@ const GrievanceForm = (prop) => {
           <label htmlFor='date' className='block w-full text-left'>
             Date:
           </label>
-          <input type='date' name='date' className='block' />
+          <input type='date' name='date' className='block bg-white' />
         </div>
         <div className='w-3/4 '>
           <label className='block w-full text-left' htmlFor='description'>
