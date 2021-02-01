@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from "react";
 
 const AddSubTask = () => {
-  const [showSubTask, setShowSubTask] = useState("hidden");
-  const handleSubTaskDisplay = () => setShowSubTask(true);
+  const [isSubTaskDisplayed, setDisplaySubtask] = useState("hidden");
+  const [isResetClicked, setResetClicked] = useState(false);
+  const [SubTaskDescriptionValue, setSubTaskDescriptionValue] = useState("");
 
-  const [subTaskValue, setSubTaskValue] = useState("");
-  const handleSubTaskValueChange = (e) => setSubTaskValue(e.target.value);
+  const handleSubTaskDescriptionValueChange = (e) =>
+    setSubTaskDescriptionValue(e.target.value);
+
+  function handleSubTaskDisplay() {
+    setDisplaySubtask("block");
+    setResetClicked(false);
+  }
+  function handleResetClick() {
+    setSubTaskDescriptionValue("");
+    setResetClicked(true);
+    setDisplaySubtask("hidden");
+  }
 
   return (
     <div className='mt-2'>
@@ -18,11 +29,11 @@ const AddSubTask = () => {
           type='text'
           name='subtask'
           id='subtask'
-          value={subTaskValue}
-          onChange={handleSubTaskValueChange}
+          value={SubTaskDescriptionValue}
+          onChange={handleSubTaskDescriptionValueChange}
           onClick={handleSubTaskDisplay}
         />
-        <div className={`${showSubTask}`}>
+        <div className={`${isSubTaskDisplayed}`}>
           <label htmlFor='reminder'>Remind Me</label>
           <input
             className='block bg-white'
@@ -40,7 +51,7 @@ const AddSubTask = () => {
               <input
                 className='w-2/5 bg-indigo-400 p-1'
                 type='reset'
-                onClick={() => setShowSubTask("hidden")}
+                onClick={handleResetClick}
               />
             </div>
           </div>
