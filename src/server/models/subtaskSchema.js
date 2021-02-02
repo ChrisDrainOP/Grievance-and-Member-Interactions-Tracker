@@ -1,25 +1,23 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const subTaskSchema = new Schema({
   createdAt: {
     type: Date,
     required: true,
   },
-  email: {
+  name: {
     type: String,
     required: true,
-    unique: true,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  password: {
+  description: {
     type: String,
     required: true,
+  },
+  reminder: {
+    type: Date,
   },
 });
 
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+const subTask = mongoose.model("Subtask", subTaskSchema);
+module.exports = subTask;
