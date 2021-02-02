@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const subtask = require("./subtaskSchema");
 
 const eventSchema = new Schema({
   createdAt: {
