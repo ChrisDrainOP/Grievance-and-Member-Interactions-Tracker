@@ -28,6 +28,11 @@ const meetingSchema = new Schema({
   extentionDate: {
     type: Date,
   },
+  creator: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
 
   subTask: [{ type: Schema.Types.ObjectId, ref: "Subtask" }],
 });
