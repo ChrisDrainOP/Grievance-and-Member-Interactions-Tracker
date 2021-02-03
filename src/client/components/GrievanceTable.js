@@ -1,5 +1,4 @@
 import React from "react";
-import AddNew from "./AddNew";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -25,7 +24,6 @@ const GrievanceTable = () => {
           </a>
         </div>
       </div>
-      <AddNew />
       <div className='text-xl ml-5 my-5'>
         <h3 className='inline-block'>View All</h3>
       </div>
