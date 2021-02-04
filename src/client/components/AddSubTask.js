@@ -14,7 +14,7 @@ const AddSubTask = () => {
   }
   function handleResetClick() {
     setSubTaskDescriptionValue("");
-    setResetClicked(true);
+    setResetClicked(!isResetClicked);
     setDisplaySubtask("invisible");
   }
 

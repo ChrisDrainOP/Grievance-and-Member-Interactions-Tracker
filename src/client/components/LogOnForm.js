@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearchPlus,
@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
-const LogOnForm = (prop) => {
+const LogOnForm = (props) => {
   return (
     <div className=''>
       <div className='ml-7'>
@@ -51,18 +51,18 @@ const LogOnForm = (prop) => {
               </a>
             </div>
             <div>
-              <a href='http://'>
-                <button
-                  type='button'
-                  className='text-white font-bold border border-solid rounded-md border-white px-2 py-1 border-opacity-30'
-                >
-                  Sign Up
-                </button>
-              </a>
+              <button
+                onClick={props.onSignUpClick}
+                type='button'
+                className='text-white font-bold border border-solid rounded-md border-white px-2 py-1 border-opacity-30'
+              >
+                Sign Up
+              </button>
             </div>
           </div>
         </form>
       </div>
+
       <div className='mt-5 ml-3 relative top-8'>
         <h3 className='font-bold text-blue-900'>
           A new way to keep track of Grievances and Member interactions

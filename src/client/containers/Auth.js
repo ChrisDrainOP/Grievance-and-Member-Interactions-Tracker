@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react";
 import NavLogoContainer from "../components/NavigationLogoContainer";
 import LogOnForm from "../components/LogOnForm";
+import SignUpOverLay from "../components/SignUpOverLay";
 
 const Authentication = () => {
+  const [isSignUpClicked, setSignUpClicked] = useState(false);
+  const [isCloseOverlayClicked, setCloseOverlay] = useState(false);
+
+  const handleSignUpClick = () => {
+    setSignUpClicked(!isSignUpClicked);
+  };
+
+  const handleCloseOverlay = () => {
+    setCloseOverlay(!isCloseOverlayClicked);
+    setSignUpClicked(!isSignUpClicked);
+  };
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -24,7 +36,10 @@ const Authentication = () => {
   return (
     <div className='main-gradient h-screen'>
       <NavLogoContainer />
-      <LogOnForm />
+      <LogOnForm onSignUpClick={handleSignUpClick} />
+      {isSignUpClicked ? (
+        <SignUpOverLay onCloseOverlayClick={handleCloseOverlay} />
+      ) : null}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import Authentication from "./client/containers/Auth";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Authentication />
   </React.StrictMode>,
   document.getElementById("root")
 );
