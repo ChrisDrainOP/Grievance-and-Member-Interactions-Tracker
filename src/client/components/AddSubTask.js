@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const AddSubTask = () => {
-  const [isSubTaskDisplayed, setDisplaySubtask] = useState("hidden");
+  const [isSubTaskDisplayed, setDisplaySubtask] = useState("invisible");
   const [isResetClicked, setResetClicked] = useState(false);
   const [SubTaskDescriptionValue, setSubTaskDescriptionValue] = useState("");
 
@@ -15,11 +15,11 @@ const AddSubTask = () => {
   function handleResetClick() {
     setSubTaskDescriptionValue("");
     setResetClicked(true);
-    setDisplaySubtask("hidden");
+    setDisplaySubtask("invisible");
   }
 
   return (
-    <div className='mt-2'>
+    <div className='my-4'>
       <form>
         <label className='block w-full text-left font-bold' htmlFor='subtask'>
           Add Subtask

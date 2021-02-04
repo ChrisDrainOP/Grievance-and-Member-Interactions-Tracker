@@ -5,7 +5,7 @@ import AddSubTask from "./AddSubTask";
 
 const GrievanceForm = (prop) => {
   return (
-    <div className='mx-2 pt-5 relative h-full'>
+    <div className='mx-2 pt-5 relative '>
       <form action='/add-meeting' method='POST' className='text-center'>
         <input
           type='submit'
