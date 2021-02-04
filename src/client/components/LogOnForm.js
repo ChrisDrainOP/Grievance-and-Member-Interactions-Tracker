@@ -1,28 +1,70 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
-import { faSearchPlus } from "@fortawesome/free-solid-svg-icons";
-import { faStopwatch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearchPlus,
+  faStopwatch,
+  faShare,
+  faUnlockAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 const LogOnForm = (prop) => {
   return (
     <div className=''>
-      <form className='mx-5' action=''>
-        <div className='py-5'>
-          <label className='block' htmlFor='username'>
-            Username:
-          </label>
-          <input type='text' name='username' id='username' />
-        </div>
-        <div>
-          <label className='block' htmlFor='password'>
-            Password:
-          </label>
-          <input type='text' name='password' id='password' />
-        </div>
-      </form>
-      <div className='mt-5 mx-2'>
-        <h3 className='font-bold '>
+      <div className='ml-7'>
+        <form className='' action=''>
+          <div className='py-5'>
+            <label className='block' htmlFor='username'></label>
+            <span className='text-blue-200'>
+              <FontAwesomeIcon icon={faUser} className='relative right-2 ' />
+            </span>
+            <input
+              className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
+              type='text'
+              name='username'
+              id='username'
+              placeholder='Username'
+            />
+          </div>
+          <div>
+            <label className='block' htmlFor='password'></label>
+            <span className='text-blue-200'>
+              <FontAwesomeIcon
+                icon={faUnlockAlt}
+                className='relative right-2 '
+              />
+            </span>
+            <input
+              type='text'
+              name='password'
+              id='password'
+              className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
+              placeholder='Password'
+            />
+          </div>
+          <div className='flex space-x-4 mt-4 relative left-3'>
+            <div>
+              <a href='http://'>
+                <button className='text-white font-bold border border-solid rounded-md border-white px-2 py-1 border-opacity-30'>
+                  Login
+                </button>
+              </a>
+            </div>
+            <div>
+              <a href='http://'>
+                <button
+                  type='button'
+                  className='text-white font-bold border border-solid rounded-md border-white px-2 py-1 border-opacity-30'
+                >
+                  Sign Up
+                </button>
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div className='mt-5 ml-3 relative top-8'>
+        <h3 className='font-bold text-blue-900'>
           A new way to keep track of Grievances and Member interactions
         </h3>
         <ol className='mt-5'>
