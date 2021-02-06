@@ -45,8 +45,7 @@ server.listen(port, () => {
 
 server.use(session(sess));
 
-server.get("/", async (req, res) => {
+server.get("/yolo", async (req, res) => {
   req.session.foo = "bar";
-  res.send("success");
-  console.log({ user });
+  res.send("Todo Bien!!!");
 });

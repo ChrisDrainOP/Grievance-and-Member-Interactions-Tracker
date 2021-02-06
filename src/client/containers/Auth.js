@@ -24,18 +24,20 @@ const Authentication = () => {
   });
 
   const callBackEndAPI = async () => {
-    const response = await fetch("/");
-    const body = await response;
+    const response = await fetch("/yolo");
+    const body = await response.text();
 
     if (response.status !== 200) {
       throw Error(body.message);
     }
+    console.log(body);
     return body;
   };
 
   return (
     <div className='main-gradient h-screen'>
       <NavLogoContainer />
+      <p>{data}</p>
       <LogOnForm onSignUpClick={handleSignUpClick} />
       {isSignUpClicked ? (
         <SignUpOverLay onCloseOverlayClick={handleCloseOverlay} />
