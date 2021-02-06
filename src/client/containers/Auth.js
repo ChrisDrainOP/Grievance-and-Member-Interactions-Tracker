@@ -19,13 +19,13 @@ const Authentication = () => {
 
   useEffect(() => {
     callBackEndAPI()
-      .then((res) => setData(res.user.avatarUrl))
+      .then((res) => setData(res))
       .catch((err) => console.log(err));
   });
 
   const callBackEndAPI = async () => {
-    const response = await fetch("/express_backend");
-    const body = await response.json();
+    const response = await fetch("/");
+    const body = await response;
 
     if (response.status !== 200) {
       throw Error(body.message);

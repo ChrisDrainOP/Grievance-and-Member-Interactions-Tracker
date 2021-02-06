@@ -1,25 +1,52 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const server = express();
 
+const server = express();
+const session = require("express-session");
+
+const mongoSessionStore = require("connect-mongo");
 const User = require("./models/User");
+const MongoStore = mongoSessionStore(session);
 
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
+
+const sess = {
+  name: process.env.SESSION_NAME,
+  secret: process.env.SESSION_SECRET,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 14 * 24 * 60 * 60,
+  }),
+  resave: false,
+  saveunitialized: false,
+  cookie: {
+    httpOnly: true,
+    maxAge: 14 * 24 * 60 * 60 * 1000,
+  },
+};
+
+const options = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+};
 
 const port = process.env.MONGO_APP_PORT || 5000;
 
 const MONGO_URL = process.env.MONGO_URL_TEST;
 
-mongoose.connect(MONGO_URL);
+mongoose.connect(MONGO_URL, options);
 
 server.listen(port, () => {
-  console.log(`Listening on ${port}`); //eslint-disable-line no-console
+  console.log(`Listening on ${port}`);
 });
 
-server.get("/express_backend", async (req, res) => {
-  //const findEmail = { email: "team@builderbook.org" };
-  const user = await User.findOne({ slug: "team-builder-book" });
-  res.send({ user });
+server.use(session(sess));
+
+server.get("/", async (req, res) => {
+  req.session.foo = "bar";
+  res.send("success");
   console.log({ user });
 });

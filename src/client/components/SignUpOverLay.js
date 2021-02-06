@@ -44,7 +44,7 @@ const SignUpOverlay = (props) => {
             className='text-white font-medium '
             type='password'
             name='password'
-            id='password'
+            id='password-sign-up'
           />
         </div>
         <div className=''>
