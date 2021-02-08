@@ -8,7 +8,6 @@ function App() {
   return (
     <div className='font-source-serif h-screen'>
       <HomePage />
-      <GrievanceListContainer />
       <GrievanceTableContainer />
       <GrievanceFormContainer />
     </div>
