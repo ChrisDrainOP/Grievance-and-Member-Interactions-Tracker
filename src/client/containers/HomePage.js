@@ -2,15 +2,15 @@ import React from "react";
 import NavigationLogoContainer from "../components/NavigationLogoContainer.js";
 import NavigationIcons from "../components/NavigationIcons.js";
 
-const NavigationContainer = (prop) => {
+const HomePage = (prop) => {
   return (
-    /*This div contains all the compents in the NavigationContainer. It also
+    /*This div contains all the components in the NavigationContainer. It also
     houses the gradient styling and the NavLogo and NavSearch component */
-    <div className='main-gradient pt-2 h-1/4'>
+    <div className='main-gradient pt-2 '>
       <NavigationLogoContainer />
       <NavigationIcons />
     </div>
   );
 };
 
-export default NavigationContainer;
+export default HomePage;

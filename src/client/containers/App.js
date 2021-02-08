@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationContainer from "./NavigationContainer";
+import HomePage from "./HomePage";
 import GrievanceListContainer from "./GrievanceListContainer";
 import GrievanceTableContainer from "./GrievanceTableContainer";
 import GrievanceFormContainer from "./GrievanceFormContainer";
@@ -7,7 +7,7 @@ import GrievanceFormContainer from "./GrievanceFormContainer";
 function App() {
   return (
     <div className='font-source-serif h-screen'>
-      <NavigationContainer />
+      <HomePage />
       <GrievanceListContainer />
       <GrievanceTableContainer />
       <GrievanceFormContainer />
