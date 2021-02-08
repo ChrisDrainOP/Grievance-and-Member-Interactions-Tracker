@@ -36,8 +36,6 @@ const Authentication = () => {
 
   return (
     <div className='main-gradient h-screen'>
-      <NavLogoContainer />
-      <p>{data}</p>
       <LogOnForm onSignUpClick={handleSignUpClick} />
       {isSignUpClicked ? (
         <SignUpOverLay onCloseOverlayClick={handleCloseOverlay} />

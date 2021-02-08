@@ -24,6 +24,7 @@ const LogOnForm = (props) => {
               name='username'
               id='username'
               placeholder='Username'
+              autoComplete='off'
             />
           </div>
           <div>
@@ -40,6 +41,7 @@ const LogOnForm = (props) => {
               id='password'
               className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
               placeholder='Password'
+              autoComplete='off'
             />
           </div>
           <div className='flex space-x-4 mt-4 relative left-3'>
