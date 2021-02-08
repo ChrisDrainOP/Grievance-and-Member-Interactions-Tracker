@@ -4,7 +4,7 @@ import GrievanceChronologicalList from "../components/GrievanceChronologicalList
 
 const GrievanceListContainer = (prop) => {
   return (
-    <div className='bg-gradient-to-r from-blue-500 to-blue-200 pt-2 h-3/4'>
+    <div className='bg-gradient-to-r from-blue-500 to-blue-200 pt-8 h-3/4 '>
       <GrievanceProcedureList />
       <GrievanceChronologicalList />
     </div>
