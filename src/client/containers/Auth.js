@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavLogoContainer from "../components/NavigationLogoContainer";
 import LogOnForm from "../components/LogOnForm";
 import SignUpOverLay from "../components/SignUpOverLay";
 

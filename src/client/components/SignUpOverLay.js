@@ -14,6 +14,7 @@ const SignUpOverlay = (props) => {
         className='w-3/4  m-auto relative top-1/2 transform -translate-y-3/4'
         action=''
       >
+        <h3 className='text-white text-2xl'>Create your Account</h3>
         <div className='my-3'>
           <label className='block text-white font-bold' htmlFor='email'>
             Email:
@@ -25,7 +26,7 @@ const SignUpOverlay = (props) => {
             id='email'
           />
         </div>
-        <div className='mb-3'>
+        <div className='mb-9'>
           <label className='block text-white font-bold' htmlFor='emailConfirm'>
             Confirm Email:
           </label>
