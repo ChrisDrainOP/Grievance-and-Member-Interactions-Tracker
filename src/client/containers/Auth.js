@@ -14,24 +14,24 @@ const Authentication = () => {
     setCloseOverlay(!isCloseOverlayClicked);
     setSignUpClicked(!isSignUpClicked);
   };
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
-  useEffect(() => {
-    callBackEndAPI()
-      .then((res) => setData(res))
-      .catch((err) => console.log(err));
-  });
+  // useEffect(() => {
+  //   callBackEndAPI()
+  //     .then((res) => setData(res))
+  //     .catch((err) => console.log(err));
+  // });
 
-  const callBackEndAPI = async () => {
-    const response = await fetch("/yolo");
-    const body = await response.text();
+  // const callBackEndAPI = async () => {
+  //   const response = await fetch("/");
+  //   const body = await response.text();
 
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    console.log(body);
-    return body;
-  };
+  //   if (response.status !== 200) {
+  //     throw Error(body.message);
+  //   }
+  //   console.log(body);
+  //   return body;
+  // };
 
   return (
     <div className='main-gradient h-screen'>

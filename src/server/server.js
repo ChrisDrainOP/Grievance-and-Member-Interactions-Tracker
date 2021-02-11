@@ -7,10 +7,11 @@ const session = require("express-session");
 const mongoSessionStore = require("connect-mongo");
 const User = require("./models/User");
 const MongoStore = mongoSessionStore(session);
-
+//Require .env with path designated by node
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 
+//Session Setup
 const sess = {
   name: process.env.SESSION_NAME,
   secret: process.env.SESSION_SECRET,
@@ -45,7 +46,6 @@ server.listen(port, () => {
 
 server.use(session(sess));
 
-server.get("/yolo", async (req, res) => {
-  req.session.foo = "bar";
-  res.send("Todo Bien!!!");
-});
+//Routes
+server.use("/", require("./controllers/index"));
+server.use("/users", require("./controllers/users"));
