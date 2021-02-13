@@ -17,7 +17,7 @@ const LogOnForm = (props) => {
   return (
     <div className='main-gradient h-screen '>
       <div className='ml-2 pt-5 text-center'>
-        <a href='auth/google'>
+        <a href={`${process.env.REACT_APP_API_URL}/auth/google`}>
           <button className='p-2  bg-white shadow-lg border-transparent rounded mb-2 w-3/4 m-auto'>
             <FontAwesomeIcon
               icon={faGoogle}

@@ -1,17 +1,21 @@
+//Require .env with path designated by node
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
+
 const express = require("express");
 const mongoose = require("mongoose");
 
 const server = express();
 const session = require("express-session");
 
-const mongoSessionStore = require("connect-mongo");
-const User = require("./models/User");
-const MongoStore = mongoSessionStore(session);
-//Require .env with path designated by node
-const path = require("path");
-require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
+const passport = require("passport");
 
-//Session Setup
+server.use(require("morgan")("combined"));
+
+const mongoSessionStore = require("connect-mongo");
+const MongoStore = mongoSessionStore(session);
+
+//Session config
 const sess = {
   name: process.env.SESSION_NAME,
   secret: process.env.SESSION_SECRET,
@@ -34,6 +38,13 @@ const options = {
   useUnifiedTopology: true,
 };
 
+//Passport config
+require("./models/passport")(passport);
+
+//Passport middleware
+server.use(passport.initialize());
+server.use(passport.session());
+
 const port = process.env.MONGO_APP_PORT || 5000;
 
 const MONGO_URL = process.env.MONGO_URL_TEST;
@@ -47,5 +58,4 @@ server.listen(port, () => {
 server.use(session(sess));
 
 //Routes
-server.use("/", require("./controllers/index"));
-server.use("/users", require("./controllers/users"));
+server.use("/auth", require("./routes/auth"));
