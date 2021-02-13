@@ -6,8 +6,7 @@ import GrievanceFormContainer from "./GrievanceFormContainer";
 
 const HomePage = (prop) => {
   return (
-    /*This div contains all the components in the NavigationContainer. It also
-    houses the gradient styling and the NavLogo and NavSearch component */
+    /*This component contains the entire app*/
     <div className='main-gradient pt-2 h-screen'>
       <NavigationIcons />
       <GrievanceListContainer />

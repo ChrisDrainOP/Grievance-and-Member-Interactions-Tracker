@@ -2,7 +2,7 @@ import React from "react";
 import HomePage from "./HomePage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavLogoContainer from "../components/NavigationLogoContainer";
-import Authentication from "./Auth";
+import LogOnForm from "../components/LogOnForm";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <div>
           <Switch>
             <Route exact path='/'>
-              <Authentication />
+              <LogOnForm />
             </Route>
             <Route path='/home'>
               <HomePage />
