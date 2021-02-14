@@ -49,7 +49,7 @@ const NavigationIcons = (prop) => {
             <p className=''>Settings</p>
           </li>
         </a>
-        <a href='http://'>
+        <a href={`${process.env.REACT_APP_API_URL}/auth/logout`}>
           <li className='border-solid border-b-2 border-r-2 border-black pr-1 m-auto'>
             <FontAwesomeIcon
               className='text-blue-900 relative left-1/2 transform -translate-x-1/2'
