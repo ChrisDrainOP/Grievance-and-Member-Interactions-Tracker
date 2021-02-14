@@ -37,6 +37,7 @@ const options = {
   useFindAndModify: false,
   useUnifiedTopology: true,
 };
+server.use(session(sess));
 
 //Passport config
 require("./models/passport")(passport);
@@ -55,7 +56,6 @@ server.listen(port, () => {
   console.log(`Listening on ${port}`);
 });
 
-server.use(session(sess));
-
 //Routes
+server.use("/", require("./routes/index"));
 server.use("/auth", require("./routes/auth"));
