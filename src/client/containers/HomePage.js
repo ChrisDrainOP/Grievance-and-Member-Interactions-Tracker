@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import DisplayUserInfo from '../components/DisplayUserInfo';
 import NavigationIcons from "../components/NavigationIcons.js";
 import GrievanceListContainer from "./GrievanceListContainer.js";
 import GrievanceTableContainer from "./GrievanceTableContainer";
@@ -20,7 +21,6 @@ const HomePage = (prop) => {
       data.displayName.replace(
         /(\w{1})(\w+)/g,
         function replacer(match, p1, p2) {
-          console.log(p1, p2);
           return [p1.toUpperCase(), p2, " "].join("");
         }
       )
@@ -31,7 +31,7 @@ const HomePage = (prop) => {
   return (
     /*This component contains the entire app*/
     <div className='main-gradient pt-2 h-screen'>
-      <h3 className='text-center'>Welcome, {displayName}</h3>
+      <DisplayUserInfo displayName={displayName} image={image}/>
       <NavigationIcons />
       <GrievanceListContainer />
       <GrievanceTableContainer />
