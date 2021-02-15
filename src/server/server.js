@@ -4,9 +4,17 @@ require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const server = express();
 const session = require("express-session");
+
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+server.use(cors(corsOptions));
 
 const passport = require("passport");
 
@@ -52,10 +60,10 @@ const MONGO_URL = process.env.MONGO_URL_TEST;
 
 mongoose.connect(MONGO_URL, options);
 
-server.listen(port, () => {
-  console.log(`Listening on ${port}`);
-});
-
 //Routes
 server.use("/", require("./routes/index"));
 server.use("/auth", require("./routes/auth"));
+
+server.listen(port, () => {
+  console.log(`Listening on ${port}`);
+});

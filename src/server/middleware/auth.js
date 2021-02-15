@@ -1,9 +1,11 @@
 module.exports = {
   ensureAuth: function (req, res, next) {
+    console.log("got here==>>", req.isAuthenticated());
     if (req.isAuthenticated()) {
       return next();
     } else {
       res.redirect(process.env.REACT_APP_API_HOME_URL + "/");
+      // res.status(400).send({ error: "Not authenticated" });
     }
   },
   ensureGuest: function (req, res, next) {
@@ -17,3 +19,6 @@ module.exports = {
     }
   },
 };
+
+//templating engine (server-rendered) - res.render/redirect
+//client-rendered - res.send/json

@@ -1,6 +1,7 @@
 {
   "name": "g-tracker",
   "version": "0.1.0",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.0.0",
@@ -40,8 +41,6 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
-  
-  "proxy": "http://localhost:5000",
   
   "eslintConfig": {
     "extends": [

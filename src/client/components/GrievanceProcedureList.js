@@ -5,6 +5,7 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 const GrievanceProcedureList = (prop) => {
   return (
     <div className='mx-1 pb-2'>
+    <h3>{}</h3>
       <ol className='flex flex-col space-y-2 w-3/4 m-auto'>
         <li className='justify-procedure-list'>
           <div className='relative'>
