@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearchPlus,
@@ -12,8 +12,23 @@ import {
   faFacebook,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import SignUpOverlay from "../components/SignUpOverlay";
 
 const LogOnForm = (props) => {
+  
+  const [isSignUpClicked, setSignUpClicked] = useState(false);
+  const [isCloseOverlayClicked, setCloseOverlay] = useState(false);
+
+  const handleSignUpClick = () => {
+    setSignUpClicked(!isSignUpClicked);
+  };
+
+  const handleCloseOverlay = () => {
+    setCloseOverlay(!isCloseOverlayClicked);
+    setSignUpClicked(!isSignUpClicked);
+  };
+
+
   return (
     <div className='main-gradient h-screen '>
       <div className='ml-7'>
@@ -59,7 +74,7 @@ const LogOnForm = (props) => {
             </div>
             <div>
               <button
-                onClick={props.onSignUpClick}
+                onClick={handleSignUpClick}
                 type='button'
                 className='text-white font-bold border border-solid rounded-md border-white px-2 py-1 border-opacity-30'
               >
@@ -69,6 +84,9 @@ const LogOnForm = (props) => {
           </div>
         </form>
       </div>
+      {isSignUpClicked ? (
+        <SignUpOverlay onCloseOverlayClick={handleCloseOverlay} />
+      ) : null}
       <div className='ml-2 pt-5 text-center'>
         <a href={`${process.env.REACT_APP_API_URL}/auth/google`}>
           <button className='p-2  bg-white shadow-lg border-transparent rounded mb-2 w-3/4 m-auto'>
