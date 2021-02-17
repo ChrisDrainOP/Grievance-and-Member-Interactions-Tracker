@@ -15,6 +15,11 @@ The goal is to create an offline first Progressive Web App that unions stewards 
 - Filterable search results.  
 - Send other stewards grievance and member interaction information  
 
+## App Preview
+<img src='https://github.com/ChrisDrainOP/ChrisDrainOP/blob/main/Log-In-Page.PNG?raw=true' height="500" width="300"></img>
+<img src='https://github.com/ChrisDrainOP/ChrisDrainOP/blob/main/home-screen.PNG?raw=true' height="500" width="300"></img>
+
+
 
 ## Tech Stack
 #### MongoDB - Express - React - Node    
@@ -23,6 +28,6 @@ The goal is to create an offline first Progressive Web App that unions stewards 
  
 
 ## Contributors  
-<a href='https://twitter.com/ChrisLearns' markdown='1'><img src='https://pbs.twimg.com/profile_images/905163044644241408/v6jD0hcT_400x400.jpg' height="60" width="60"></img></a>
+<a href='https://twitter.com/ChrisLearns'><img src='https://pbs.twimg.com/profile_images/905163044644241408/v6jD0hcT_400x400.jpg' height="60" width="60"></img></a>
 
 ### Please feel free to contribute as this project goes to help an organization that represents over 220,000 members. All help is greatly appreciated.
