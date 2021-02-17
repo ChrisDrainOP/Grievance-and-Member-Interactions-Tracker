@@ -25,4 +25,4 @@ The goal is to create an offline first Progressive Web App that unions stewards 
 ## Contributors
 Please feel free to contribute as this project goes to help an organization that represents over 220,000 members. All help is greatly appreciated.
 
-<a href='https://twitter.com/ChrisLearns'><img src='https://pbs.twimg.com/profile_images/905163044644241408/v6jD0hcT_400x400.jpg' style='height:5rem;width:5rem;border-radius:10rem;'></img></a>
+<a href='https://twitter.com/ChrisLearns' markdown='1'><img src='https://pbs.twimg.com/profile_images/905163044644241408/v6jD0hcT_400x400.jpg' style='height:5rem;width:5rem;border-radius:10rem;' markdown='1'></img></a>
