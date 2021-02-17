@@ -34,16 +34,15 @@ const LogOnForm = (props) => {
       <div className='ml-7'>
         <form className='' action=''>
           <div className='py-5'>
-            <label className='block' htmlFor='username'></label>
+            <label className='block' htmlFor='email'></label>
             <span className='text-blue-200'>
               <FontAwesomeIcon icon={faUser} className='relative right-2 ' />
             </span>
             <input
               className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
               type='text'
-              name='username'
-              id='username'
-              placeholder='Username'
+              name='email'
+              placeholder='Email'
               autoComplete='off'
             />
           </div>

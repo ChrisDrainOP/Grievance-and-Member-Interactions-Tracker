@@ -11,10 +11,21 @@ const SignUpOverlay = (props) => {
         onClick={props.onCloseOverlayClick}
       />
       <form
-        className='w-3/4  m-auto relative top-1/2 transform -translate-y-3/4'
+        className='w-3/4  m-auto relative top-1/2 transform -translate-y-2/4'
         action=''
       >
-        <h3 className='text-white text-2xl'>Create your Account</h3>
+        <h3 className='text-white text-2xl pb-5'>Create your Account</h3>
+        <div className='mb-9'>
+          <label className='block text-white font-bold' htmlFor='email'>
+            Name(First and Last):
+          </label>
+          <input
+            className='text-white font-medium '
+            type='text'
+            name='full-name'
+            id='full-name'
+          />
+        </div>
         <div className='my-3'>
           <label className='block text-white font-bold' htmlFor='email'>
             Email:

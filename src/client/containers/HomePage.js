@@ -16,7 +16,7 @@ const HomePage = (prop) => {
   const loadProfile = async () => {
     const response = await fetch("/userInfo");
     const data = await response.json();
-    console.log("response==>>", data);
+    
     setDisplayName(
       data.displayName.replace(
         /(\w{1})(\w+)/g,
