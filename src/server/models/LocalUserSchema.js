@@ -1,22 +1,19 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const LocalUserSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
     required: true,
   },
-  googleId: {
+  name: {
     type: String,
     required: true,
   },
-  displayName: {
+  password: {
     type: String,
     required: true,
-  },
-  image: {
-    type: String,
   },
   isAdmin: {
     type: Boolean,
@@ -24,5 +21,5 @@ const UserSchema = new Schema({
   },
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", LocalUserSchema);
 module.exports = User;

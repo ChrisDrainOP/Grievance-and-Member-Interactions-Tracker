@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
-const user = require("../models/User");
+const user = require("../models/GoogleUserSchema");
 
 //Login page
 //route = Get /

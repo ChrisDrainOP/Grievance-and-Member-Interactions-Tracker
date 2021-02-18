@@ -9,7 +9,6 @@ const cors = require("cors");
 const server = express();
 const session = require("express-session");
 
-
 server.use(cors());
 
 const passport = require("passport");
@@ -49,6 +48,12 @@ require("./models/passport")(passport);
 //Passport middleware
 server.use(passport.initialize());
 server.use(passport.session());
+
+server.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 
 const port = process.env.MONGO_APP_PORT || 5000;
 
