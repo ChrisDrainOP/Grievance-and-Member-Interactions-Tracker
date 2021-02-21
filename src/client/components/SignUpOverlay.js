@@ -12,7 +12,7 @@ const SignUpOverlay = (props) => {
       />
       <form
         className='w-3/4  m-auto relative top-1/2 transform -translate-y-2/4'
-        action='/user/register'
+        action={`${process.env.REACT_APP_API_URL}/users/register`}
         method='post'
       >
         <h3 className='text-white text-2xl pb-5'>Create your Account</h3>
