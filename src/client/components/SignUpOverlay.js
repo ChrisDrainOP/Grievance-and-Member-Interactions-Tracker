@@ -12,7 +12,8 @@ const SignUpOverlay = (props) => {
       />
       <form
         className='w-3/4  m-auto relative top-1/2 transform -translate-y-2/4'
-        action=''
+        action='/user/register'
+        method='post'
       >
         <h3 className='text-white text-2xl pb-5'>Create your Account</h3>
         <div className='mb-9'>
@@ -20,7 +21,7 @@ const SignUpOverlay = (props) => {
             Name(First and Last):
           </label>
           <input
-            className='text-white font-medium '
+            className='text-black font-medium '
             type='text'
             name='full-name'
             id='full-name'
@@ -31,21 +32,21 @@ const SignUpOverlay = (props) => {
             Email:
           </label>
           <input
-            className='text-white font-medium '
+            className='text-black font-medium '
             type='email'
             name='email'
             id='email'
           />
         </div>
         <div className='mb-9'>
-          <label className='block text-white font-bold' htmlFor='emailConfirm'>
+          <label className='block text-white font-bold' htmlFor='email2'>
             Confirm Email:
           </label>
           <input
-            className='text-white font-medium '
+            className='text-black font-medium '
             type='email'
-            name='emailConfirm'
-            id='emailConfirm'
+            name='email2'
+            id='email2'
           />
         </div>
         <div className='mb-3'>
@@ -53,28 +54,28 @@ const SignUpOverlay = (props) => {
             Password:
           </label>
           <input
-            className='text-white font-medium '
+            className='text-black font-medium '
             type='password'
             name='password'
             id='password-sign-up'
           />
         </div>
         <div className=''>
-          <label
-            className='block text-white font-bold'
-            htmlFor='passwordConfirm'
-          >
+          <label className='block text-white font-bold' htmlFor='password2'>
             Confirm Password:
           </label>
           <input
-            className='text-white font-medium '
+            className='text-black font-medium '
             type='password'
-            name='passwordConfirm'
-            id='passwordConfirm'
+            name='password2'
+            id='password2'
           />
         </div>
         <div>
-          <button className='border border-solid rounded-md border-black  px-2 py-1 border-opacity-30 my-4 bg-indigo-500 text-white font-bold'>
+          <button
+            type='submit'
+            className='border border-solid rounded-md border-black  px-2 py-1 border-opacity-30 my-4 bg-indigo-500 text-white font-bold'
+          >
             Submit!
           </button>
         </div>

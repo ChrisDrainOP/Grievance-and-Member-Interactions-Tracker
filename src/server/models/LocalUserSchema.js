@@ -11,6 +11,10 @@ const LocalUserSchema = new Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
     required: true,
@@ -21,5 +25,5 @@ const LocalUserSchema = new Schema({
   },
 });
 
-const User = mongoose.model("User", LocalUserSchema);
-module.exports = User;
+const local = mongoose.model("locals", LocalUserSchema);
+module.exports = local;

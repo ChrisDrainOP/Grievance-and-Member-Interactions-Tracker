@@ -32,7 +32,7 @@ const LogOnForm = (props) => {
   return (
     <div className='main-gradient h-screen '>
       <div className='ml-7'>
-        <form className='' action=''>
+        <form className='' action="/users/login" method='post' >
           <div className='py-5'>
             <label className='block' htmlFor='email'></label>
             <span className='text-blue-200'>

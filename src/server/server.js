@@ -43,17 +43,11 @@ const options = {
 server.use(session(sess));
 
 //Passport config
-require("./models/passport")(passport);
+require("./models/GooglePassportStrategy")(passport);
 
 //Passport middleware
 server.use(passport.initialize());
 server.use(passport.session());
-
-server.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.user);
-  next();
-});
 
 const port = process.env.MONGO_APP_PORT || 5000;
 
@@ -64,6 +58,7 @@ mongoose.connect(MONGO_URL, options);
 //Routes
 server.use("/", require("./routes/index"));
 server.use("/auth", require("./routes/auth"));
+server.use('/users', require('./routes/users'));
 
 server.listen(port, () => {
   console.log(`Listening on ${port}`);
