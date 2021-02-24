@@ -13,7 +13,7 @@ module.exports = {
         return next();
     } else {
       
-      return res.status(400).send({error: "Please Log in first"})
+      return res.status(401).send({error: "Please Log in first"})
     }
   },
 };

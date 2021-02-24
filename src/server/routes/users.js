@@ -31,6 +31,9 @@ router.post("/register", (req, res) => {
     res.json({
       errors:
         "Please properly fill out all fields. Remember password field should be longer than 6 characters",
+        logInReady: false,
+        isAuthenticated: false,
+        userExist: false,
     });
   }
 
@@ -38,17 +41,17 @@ router.post("/register", (req, res) => {
     if (err) throw err;
     if (doc)
       res.json({
+        errors: false,
+        logInReady: false,
         isAuthenticated: false,
         userExist: "This email is already in use.",
       });
     if (!doc) {
-      console.log("B-cripping Bro!");
       const newUser = new localUser({
         name: fullName,
         email: email,
         password: password,
       });
-      await newUser.save();
 
       bcrypt.genSalt(13, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
@@ -57,13 +60,13 @@ router.post("/register", (req, res) => {
             email: email,
             password: hash,
           });
-          newUser.save();
+          await newUser.save();
           res.json({
-        errors: false,
-        logInReady: "Exit and Please Login with your credentials",
-        isAuthenticated: false,
-        userExist: "This email is already in use.",
-      });
+            errors: false,
+            logInReady: "Exit and Please Login with your credentials",
+            isAuthenticated: false,
+            userExist: false,
+          });
         });
       });
     }

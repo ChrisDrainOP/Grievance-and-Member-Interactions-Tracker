@@ -33,15 +33,11 @@ const SignUpOverlay = (props) => {
     });
     const resJson = await res.json();
     console.log("res json==>>", resJson);
+
+    setResJson(resJson);
     
-    if (resJson.errors) {
-      setResJson(resJson);
-    }
     if (resJson.isAuthenticated) {
       history.push("/home");
-    }
-    if (resJson.userExist) {
-      setResJson(resJson);
     }
   };
 
@@ -71,11 +67,21 @@ const SignUpOverlay = (props) => {
         method='post'
       >
         <h3 className='text-white text-2xl pb-5'>Create your Account</h3>
+        
         {resJson.errors ? (
-          <h3 className='text-white text-1xl pb-5'>{resJson.errors }</h3>
+          <h3 className='text-red-900 bg-black text-1xl mb-5 w-3/4'>
+            {resJson.errors}
+          </h3>
         ) : null}
         {resJson.userExist ? (
-          <h3 className='text-white text-1xl pb-5'>{resJson.userExist }</h3>
+          <h3 className='text-red-900 bg-black text-1xl mb-5 w-3/4 '>
+            {resJson.userExist}
+          </h3>
+        ) : null}
+        {resJson.logInReady ? (
+          <h3 className='text-green-500 text-1xl mb-5 '>
+            {resJson.logInReady}
+          </h3>
         ) : null}
         <div className='mb-9'>
           <label className='block text-white font-bold' htmlFor='email'>

@@ -54,7 +54,7 @@ const LogOnForm = (props) => {
             <input
               type='text'
               name='password'
-              id='password'
+              id='passwordSignIn'
               className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
               placeholder='Password'
               autoComplete='off'
