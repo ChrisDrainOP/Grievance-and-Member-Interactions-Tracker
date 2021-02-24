@@ -47,12 +47,7 @@ router.post("/register", (req, res) => {
         userExist: "This email is already in use.",
       });
     if (!doc) {
-      const newUser = new localUser({
-        name: fullName,
-        email: email,
-        password: password,
-      });
-
+      
       bcrypt.genSalt(13, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
           const newUser = new localUser({
