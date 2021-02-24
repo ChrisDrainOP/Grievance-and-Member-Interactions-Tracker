@@ -18,7 +18,7 @@ const HomePage = (prop) => {
     const data = await response.json();
     
     setDisplayName(
-      data.displayName.replace(
+      data.displayName.toLowerCase().replace(
         /(\w{1})(\w+)/g,
         function replacer(match, p1, p2) {
           return [p1.toUpperCase(), p2, " "].join("");

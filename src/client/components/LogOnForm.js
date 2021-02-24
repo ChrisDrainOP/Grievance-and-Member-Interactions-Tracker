@@ -11,6 +11,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SignUpOverlay from "../components/SignUpOverlay";
 
 const LogOnForm = (props) => {
+  //Handle User Sign up
   const [isSignUpClicked, setSignUpClicked] = useState(false);
   const [isCloseOverlayClicked, setCloseOverlay] = useState(false);
 
@@ -23,13 +24,73 @@ const LogOnForm = (props) => {
     setSignUpClicked(!isSignUpClicked);
   };
 
+  //Handle User login
+
+  const [formValues, setFormValues] = useState({});
+  const [resJson, setResJson] = useState({
+    errors: false,
+    logInReady: false,
+    isAuthenticated: false,
+    userExist: false,
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const {emailLogIn, passwordLogIn} = formValues;
+
+    if (!emailLogIn || !passwordLogIn) {
+      
+      return setResJson((prev) => ({
+        ...prev,
+        ["errors"]: "Please fill out both fields to login",
+      }));
+    }
+
+    const res = await fetch("/users/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ emailLogIn, passwordLogIn }),
+    });
+    const resJson = await res.json();
+    setResJson(resJson)
+    console.log("res json==>>", resJson, resJson.isAuthenticated);
+
+    //If user is authenticated take them to the dashboard
+    if (resJson.isAuthenticated) {
+      setTimeout(fetch("/home"), 2000)
+    }
+  
+
+  };
+  const handleInputChange = (e) => {
+    console.log(e)
+    const { id, value } = e.target;
+    setFormValues((prevValues) => ({ ...prevValues, [id]: value }));
+  };
+
+  const { emailLogIn, passwordLogIn } = formValues;
   return (
     <div className='main-gradient h-screen '>
       <div className='ml-7'>
-        <h3 className='text-1xl'>
-          {sessionStorage.getItem("blank")}
-        </h3>
-        <form className='' action='/users/login' method='post'>
+        {resJson.errors ? (
+          <h3 className='text-red-900 font-bold text-1xl relative top-3 text-center w-3/4'>
+            {resJson.errors}
+          </h3>
+        ) : null}
+        {resJson.userExist ? (
+          <h3 className='text-red-900 font-bold text-1xl relative top-3 text-center w-3/4 '>
+            {resJson.userExist}
+          </h3>
+        ) : null}
+        {resJson.logInReady ? (
+          <h3 className='text-green-500 font-bold text-1xl relative top-3 text-center '>
+            {resJson.logInReady}
+          </h3>
+        ) : null}
+        <form className='' onSubmit={handleSubmit} method='post'>
           <div className='py-5'>
             <label className='block' htmlFor='email'></label>
             <span className='text-blue-200'>
@@ -40,7 +101,8 @@ const LogOnForm = (props) => {
               type='text'
               name='email'
               placeholder='Email'
-              autoComplete='off'
+              id='emailLogIn'
+              onChange={handleInputChange}
             />
           </div>
           <div>
@@ -52,12 +114,12 @@ const LogOnForm = (props) => {
               />
             </span>
             <input
-              type='text'
-              name='password'
-              id='passwordSignIn'
               className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
+              type='password'
+              name='password'
+              id='passwordLogIn'
               placeholder='Password'
-              autoComplete='off'
+              onChange={handleInputChange}
             />
           </div>
           <div className='flex space-x-4 mt-4 relative left-3'>

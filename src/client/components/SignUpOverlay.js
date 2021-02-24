@@ -5,23 +5,43 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const SignUpOverlay = (props) => {
   const [formValues, setFormValues] = useState({});
-  const [resJson, setResJson] = useState("");
+  const [resJson, setResJson] = useState({
+    errors: false,
+    logInReady: false,
+    isAuthenticated: false,
+    userExist: false,
+  });
   let history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     console.log("got here submit==>>", formValues);
+
     const { email, confirmEmail, password, confirmPassword } = formValues;
+
     if (email !== confirmEmail) {
-      return alert("Email doesn't match");
+
+      return setResJson((prev) => ({
+        ...prev,
+        ["errors"]: "Email fields don't match",
+      }));
     }
 
     if (password !== confirmPassword) {
-      return alert("Password doesn't match");
+
+      return setResJson((prev) => ({
+        ...prev,
+        ["errors"]: "Password fields don't match",
+      }));
     }
 
     if (password.length < 6 || confirmPassword.length < 6) {
-      return alert("Password should be 6 characters or more");
+
+      return setResJson((prev) => ({
+        ...prev,
+        ["errors"]: "Password should be longer than 6 characters",
+      }));
     }
 
     const res = await fetch("/users/register", {
@@ -36,9 +56,6 @@ const SignUpOverlay = (props) => {
 
     setResJson(resJson);
     
-    if (resJson.isAuthenticated) {
-      history.push("/home");
-    }
   };
 
   const handleInputChange = (e) => {

@@ -15,6 +15,16 @@ server.use(cors({
   credentials: true,
 }));
 
+//Connect to MongoDB database
+const MONGO_URL = process.env.MONGO_URL_TEST;
+const options = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+};
+mongoose.connect(MONGO_URL, options);
+
 const passport = require("passport");
 
 server.use(require("morgan")("combined"));
@@ -38,30 +48,24 @@ const sess = {
   },
 };
 
-const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-};
-server.use(session(sess));
 
-//Passport config
-require("./models/GooglePassportStrategy")(passport);
+server.use(session(sess));
 
 //Passport middleware
 server.use(passport.initialize());
 server.use(passport.session());
 
+//Passport config
+require("./models/GooglePassportStrategy")(passport);
+require("./models/LocalPassportStrategy")(passport);
+
 const port = process.env.MONGO_APP_PORT || 5000;
-
-const MONGO_URL = process.env.MONGO_URL_TEST;
-
-mongoose.connect(MONGO_URL, options);
 
 //Routes
 server.use("/", require("./routes/index"));
+//Passport Google OAuth routes
 server.use("/auth", require("./routes/auth"));
+//Passport Local user routes
 server.use("/users", require("./routes/users"));
 
 server.listen(port, () => {
