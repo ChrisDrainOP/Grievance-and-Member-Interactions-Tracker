@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const LocalUserSchema = new Schema({
@@ -18,6 +18,7 @@ const LocalUserSchema = new Schema({
   password: {
     type: String,
     required: true,
+    minlength: 6,
   },
   isAdmin: {
     type: Boolean,
@@ -25,5 +26,5 @@ const LocalUserSchema = new Schema({
   },
 });
 
-const local = mongoose.model("locals", LocalUserSchema);
-module.exports = local;
+const LocalUser = mongoose.model("Local", LocalUserSchema);
+module.exports = LocalUser;

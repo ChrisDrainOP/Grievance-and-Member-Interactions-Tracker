@@ -7,15 +7,10 @@ import {
   faUnlockAlt,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faGoogle,
-  faFacebook,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SignUpOverlay from "../components/SignUpOverlay";
 
 const LogOnForm = (props) => {
-  
   const [isSignUpClicked, setSignUpClicked] = useState(false);
   const [isCloseOverlayClicked, setCloseOverlay] = useState(false);
 
@@ -28,11 +23,13 @@ const LogOnForm = (props) => {
     setSignUpClicked(!isSignUpClicked);
   };
 
-
   return (
     <div className='main-gradient h-screen '>
       <div className='ml-7'>
-        <form className='' action="/users/login" method='post' >
+        <h3 className='text-1xl'>
+          {sessionStorage.getItem("blank")}
+        </h3>
+        <form className='' action='/users/login' method='post'>
           <div className='py-5'>
             <label className='block' htmlFor='email'></label>
             <span className='text-blue-200'>
@@ -96,24 +93,6 @@ const LogOnForm = (props) => {
             <p className='text-black inline-block'>Log In with Google </p>
           </button>
         </a>
-        {/* <a href='' className=''>
-          <button className='p-2 border-transparent rounded bg-blue-800 shadow-lg mb-2 w-3/4 m-auto'>
-            <FontAwesomeIcon
-              icon={faFacebook}
-              className='text-white text-2xl mr-2 relative top-1'
-            />
-            <p className='text-white  inline-block'>Log In with Facebook </p>
-          </button>
-        </a>
-        <a href='' className=''>
-          <button className='p-2 border-transparent rounded bg-blue-300 shadow-lg w-3/4 m-auto'>
-            <FontAwesomeIcon
-              icon={faTwitter}
-              className='text-white text-2xl mr-2 relative top-1'
-            />
-            <p className='text-black inline-block'>Log In with Twitter </p>
-          </button>
-        </a> */}
       </div>
       <div className='ml-3 relative top-5'>
         <h3 className='font-bold text-blue-900'>

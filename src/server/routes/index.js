@@ -19,6 +19,10 @@ router.get("/home", ensureAuth, (req, res) => {
 router.get("/userInfo", ensureAuth, (req, res) => {
   let id = req.user._id;
   user.findById(id).then((foundUser) => res.json(foundUser));
+  // if (!id) {
+  //   let
+  // }
 });
+
 
 module.exports = router;

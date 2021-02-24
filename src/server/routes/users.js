@@ -1,12 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const bodyParser = require("body-parser");
-const passport = require("passport");
 const localUser = require("../models/LocalUserSchema");
 const bcrypt = require("bcryptjs");
-
-//Parse body from http request
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const mongoose = require("mongoose");
+const server = express();
 
 //Login with email and password
 //route post /login
@@ -24,36 +21,53 @@ router.post("/login", (req, res) => {
 //Register the user
 //route post /register
 
-router.post("/register", urlencodedParser, (req, res) => {
-  const { fullName, email, email2, password, password2 } = req.body;
-  req.session.errors = {};
-  if (!fullName || !email || !email2 || !password || !password2) {
-    req.session.errors.blank = "Please fill in all fields";
-  }
-
-  //Check emails
-  if (email !== email2) {
-    req.session.errors.email = "Email fields do not match";
-  }
-
-  //Check passwords
-  if (password !== password2) {
-    req.session.errors.password = "Passwords do not match";
-  }
+router.post("/register", (req, res) => {
+  console.log("req bodyy==>>>", req.body);
+  const { fullName, email, password } = req.body;
 
   //Check password length
-  if (password.length < 6) {
-    req.session.errors.passwordLength =
-      "Password field should be longer than 6 characters";
+  if (password.length < 6 || !email || !fullName) {
+    console.log("got here...credential check");
+    res.json({
+      errors:
+        "Please properly fill out all fields. Remember password field should be longer than 6 characters",
+    });
   }
-  console.log(req.session);
 
-  if (Object.keys(req.session.errors).length > 0) {
-    req.session.errors.userErrors = "You have errors in your Registration Form";
-    res.redirect(process.env.REACT_APP_API_URL + "/");
-  } else {
-    res.redirect(process.env.REACT_APP_API_URL + "/home");
-  }
+  localUser.findOne({ email: email }, async (err, doc) => {
+    if (err) throw err;
+    if (doc)
+      res.json({
+        isAuthenticated: false,
+        userExist: "This email is already in use.",
+      });
+    if (!doc) {
+      console.log("B-cripping Bro!");
+      const newUser = new localUser({
+        name: fullName,
+        email: email,
+        password: password,
+      });
+      await newUser.save();
+
+      bcrypt.genSalt(13, function (err, salt) {
+        bcrypt.hash(password, salt, function (err, hash) {
+          const newUser = new localUser({
+            name: fullName,
+            email: email,
+            password: hash,
+          });
+          newUser.save();
+          res.json({
+        errors: false,
+        logInReady: "Exit and Please Login with your credentials",
+        isAuthenticated: false,
+        userExist: "This email is already in use.",
+      });
+        });
+      });
+    }
+  });
 });
 
 module.exports = router;

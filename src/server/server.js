@@ -7,9 +7,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const server = express();
+server.use(express.json());
 const session = require("express-session");
 
-server.use(cors());
+server.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 
 const passport = require("passport");
 
@@ -58,7 +62,7 @@ mongoose.connect(MONGO_URL, options);
 //Routes
 server.use("/", require("./routes/index"));
 server.use("/auth", require("./routes/auth"));
-server.use('/users', require('./routes/users'));
+server.use("/users", require("./routes/users"));
 
 server.listen(port, () => {
   console.log(`Listening on ${port}`);

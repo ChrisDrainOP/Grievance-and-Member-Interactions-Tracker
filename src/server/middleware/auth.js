@@ -4,18 +4,16 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     } else {
-      res.redirect(process.env.REACT_APP_API_HOME_URL + "/");
-      // res.status(400).send({ error: "Not authenticated" });
+      res.status(400).send({ error: "Not Logged In" });
     }
   },
   ensureGuest: function (req, res, next) {
     if (req.isAuthenticated()) {
       console.log(req.isAuthenticated(), "I'm checking");
-
-      res.redirect(process.env.REACT_APP_API_HOME_URL + "/home");
+        return next();
     } else {
-      console.log(req.isAuthenticated(), "I'm checking guest");
-      return next();
+      
+      return res.status(400).send({error: "Please Log in first"})
     }
   },
 };
