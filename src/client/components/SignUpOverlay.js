@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,11 +10,10 @@ const SignUpOverlay = (props) => {
     isAuthenticated: false,
     userExist: false,
   });
-  let history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     console.log("got here submit==>>", formValues);
 
     const { email, confirmEmail, password, confirmPassword } = formValues;

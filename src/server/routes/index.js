@@ -1,26 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
-const user = require("../models/UserSchema");
 
 //Login page
 //route = Get /
 router.get("/", ensureGuest, (req, res) => {
-  res.redirect(process.env.REACT_APP_API_HOME_URL + "/");
+  let userInfo = { ...req.user._doc };
+
+  console.log(userInfo, req.isAuthenticated());
+  res.json({ isAuthenticated: req.isAuthenticated(), ...userInfo });
 });
 
 //Homepage / Dashboard
 //route = Get /home
-router.get("/home", ensureAuth, (req, res) => {
-  res.redirect(process.env.REACT_APP_API_HOME_URL + "/home");
+router.get("/home", ensureAuth, (req, res, next) => {
+  let userInfo = { ...req.user._doc };
+
+  console.log(userInfo, req.isAuthenticated());
+  res.json({ isAuthenticated: req.isAuthenticated(), ...userInfo });
 });
 
 router.get("/userInfo", ensureAuth, (req, res) => {
+  let userInfo = {...req.user._doc};
 
-  let userInfo = req.user;
-  res.json(userInfo);
-
+  console.log(userInfo, req.isAuthenticated());
+  res.json({ isAuthenticated: req.isAuthenticated(), ...userInfo });
 });
-
 
 module.exports = router;
