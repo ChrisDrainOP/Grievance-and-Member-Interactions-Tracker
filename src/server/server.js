@@ -25,7 +25,9 @@ const options = {
 };
 mongoose.connect(MONGO_URL, options);
 
+//Load Passport instance
 const passport = require("passport");
+
 
 server.use(require("morgan")("combined"));
 
@@ -58,6 +60,7 @@ server.use(passport.session());
 //Passport config
 require("./models/GooglePassportStrategy")(passport);
 require("./models/LocalPassportStrategy")(passport);
+require('./models/JWTPassportStrategy')(passport);
 
 const port = process.env.MONGO_APP_PORT || 5000;
 

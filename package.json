@@ -23,12 +23,13 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.13",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.7",
     "nprogress": "^0.2.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
@@ -42,7 +43,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "devStart": "nodemon src/server/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -61,5 +63,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

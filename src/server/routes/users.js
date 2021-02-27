@@ -3,6 +3,7 @@ const router = express.Router();
 const localUser = require("../models/UserSchema");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 //Error and Success handling Handling
 const messages = {
@@ -19,16 +20,21 @@ router.post("/login", (req, res, next) => {
     if (err) throw err;
     if (!user) res.json({ ...messages, ["userExist"]: "User does not exist!" });
     else {
-
       req.logIn(user, (err) => {
+        console.log("I have authenticated and I'm trying to log in");
         if (err) {
           throw err;
         }
+        let jwtSignUser = {
+          id: user._id,
+          name: user.displayName,
+          }
+        let accessToken = jwt.sign(jwtSignUser, process.env.ACCESS_SECRET_TOKEN);
 
         return res.json({
           ...messages,
           ["logInReady"]: "Success Redirecting to DashBoard!",
-          ["isAuthenticated"]: req.isAuthenticated(),
+          ["isAuthenticated"]: accessToken,
         });
       });
     }
@@ -43,7 +49,6 @@ router.post("/register", (req, res) => {
 
   //Check password length
   if (password.length < 6 || !email || !fullName) {
-    console.log("got here...credential check");
     res.json({
       ...messages,
       ["errors"]:
@@ -65,8 +70,10 @@ router.post("/register", (req, res) => {
           });
           newUser.save();
           res.json({
+            //Will Send a Json Token here from regiser that will redirect the user once official apart of DB
             ...messages,
             ["logInReady"]: "Exit and Please Login with your credentials",
+            ["isAuthenticated"]: accessToken,
           });
         });
       });

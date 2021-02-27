@@ -1,8 +1,8 @@
 module.exports = {
   ensureAuth: function (req, res, next) {
-    console.log("got here==>>but..", req.isAuthenticated());
+    
     if (req.isAuthenticated()) {
-      console.log("I said next")
+      
       return next();
     } else {
       res.status(400).send({ error: "Not Logged In" });
@@ -10,7 +10,7 @@ module.exports = {
   },
   ensureGuest: function (req, res, next) {
     if (req.isAuthenticated()) {
-      console.log(req.isAuthenticated(), "I'm checking");
+     
         return next();
     } else {
       

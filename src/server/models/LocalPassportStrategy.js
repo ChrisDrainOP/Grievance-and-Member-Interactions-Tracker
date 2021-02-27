@@ -9,8 +9,8 @@ module.exports = function (passport) {
         usernameField: "emailLogIn",
         passwordField: "passwordLogIn",
       },
-      function (email, password, done) {
-        User.findOne({ email: email }, function (err, user) {
+      async function (email, password, done) {
+        await User.findOne({ email: email }, function (err, user) {
           if (err) throw err;
           if (!user) {
             return done(null, false);
