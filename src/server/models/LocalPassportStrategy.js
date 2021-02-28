@@ -10,7 +10,7 @@ module.exports = function (passport) {
         passwordField: "passwordLogIn",
       },
       async function (email, password, done) {
-        await User.findOne({ email: email }, function (err, user) {
+        await User.findOne({ email: email.toLowerCase() }, function (err, user) {
           if (err) throw err;
           if (!user) {
             return done(null, false);

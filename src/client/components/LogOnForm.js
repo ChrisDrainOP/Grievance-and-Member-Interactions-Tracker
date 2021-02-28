@@ -13,7 +13,7 @@ import {
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SignUpOverlay from "../components/SignUpOverlay";
 
-const LogOnForm = (props) => {
+const LogOnForm = ({history ,...props}) => {
   
   //Handle User Sign up
   const [isSignUpClicked, setSignUpClicked] = useState(false);
@@ -27,7 +27,6 @@ const LogOnForm = (props) => {
     setCloseOverlay(!isCloseOverlayClicked);
     setSignUpClicked(!isSignUpClicked);
   };
-
 
   return (
     <div className='main-gradient h-screen '>
@@ -100,7 +99,7 @@ const LogOnForm = (props) => {
         </form>
       </div>
       {isSignUpClicked ? (
-        <SignUpOverlay onCloseOverlayClick={handleCloseOverlay} />
+        <SignUpOverlay history={history} onCloseOverlayClick={handleCloseOverlay} parentJson={props.resJson} sendParentJson={props.sendParentJson} />
       ) : null}
       <div className='ml-2 pt-5 text-center'>
         <a href={`${process.env.REACT_APP_API_URL}/auth/google`}>

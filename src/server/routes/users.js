@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const messages = {
   errors: false,
   logInReady: false,
-  isAuthenticated: false,
+  accessToken: null,
   userExist: false,
 };
 
@@ -26,15 +26,25 @@ router.post("/login", (req, res, next) => {
           throw err;
         }
         let jwtSignUser = {
-          id: user._id,
+          sub: user._id,
           name: user.displayName,
-          }
-        let accessToken = jwt.sign(jwtSignUser, process.env.ACCESS_SECRET_TOKEN);
-
+          email: user.email,
+          admin: user.isAdmin,
+        };
+        let accessToken = jwt.sign(
+          jwtSignUser,
+          process.env.ACCESS_SECRET_TOKEN
+        );
+        let refreshToken = jwt.sign(
+          jwtSignUser,
+          process.env.REFRESH_SECRET_TOKEN
+        );
+        req.cookies["refreshToken"] = refreshToken;
+        console.log("Refresh Token right here in /login", req.cookies);
         return res.json({
           ...messages,
           ["logInReady"]: "Success Redirecting to DashBoard!",
-          ["isAuthenticated"]: accessToken,
+          ["accessToken"]: accessToken,
         });
       });
     }
@@ -44,7 +54,7 @@ router.post("/login", (req, res, next) => {
 //Register the user
 //route post /register
 
-router.post("/register", (req, res) => {
+router.post("/register", (req, res, next) => {
   const { fullName, email, password } = req.body;
 
   //Check password length
@@ -56,25 +66,59 @@ router.post("/register", (req, res) => {
     });
   }
 
-  localUser.findOne({ email: email }, async (err, doc) => {
+  localUser.findOne({ email: email.toLowerCase() }, (err, user) => {
     if (err) throw err;
-    if (doc)
-      res.json({ ...messages, ["userExist"]: "This email is already in use." });
-    if (!doc) {
-      await bcrypt.genSalt(13, function (err, salt) {
+    if (user) {
+      return res.json({
+        ...messages,
+        ["userExist"]: "This email is already in use.",
+      });
+    }
+    if (!user) {
+      bcrypt.genSalt(13, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
           const newUser = new localUser({
             displayName: fullName,
-            email: email,
+            email: email.toLowerCase(),
             password: hash,
           });
-          newUser.save();
-          res.json({
-            //Will Send a Json Token here from regiser that will redirect the user once official apart of DB
-            ...messages,
-            ["logInReady"]: "Exit and Please Login with your credentials",
-            ["isAuthenticated"]: accessToken,
-          });
+          newUser
+            .save()
+            .then((savedDoc) => {
+              console.log(savedDoc, "Heres Yours savedDoc!!!!!");
+
+              req.logIn(savedDoc, (err) => {
+                console.log("I have authenticated and I'm trying to log in");
+                if (err) {
+                  throw err;
+                }
+                let jwtSignUser = {
+                  id: savedDoc._id,
+                  name: savedDoc.displayName,
+                  email: savedDoc.email,
+                  admin: savedDoc.admin,
+                };
+                let accessToken = jwt.sign(
+                  jwtSignUser,
+                  process.env.ACCESS_SECRET_TOKEN
+                );
+                let refreshToken = jwt.sign(
+                  jwtSignUser,
+                  process.env.REFRESH_SECRET_TOKEN
+                );
+                req.cookies["refreshToken"] = refreshToken;
+                console.log(
+                  "Here are your cookies--->>> in /register",
+                  req.cookies
+                );
+                return res.json({
+                  ...messages,
+                  ["logInReady"]: "Success Redirecting to DashBoard!",
+                  ["accessToken"]: accessToken,
+                });
+              });
+            })
+            .catch((err) => res.json({ error: err }));
         });
       });
     }

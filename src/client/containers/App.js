@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HomePage from "./HomePage";
 import {
   Route,
@@ -33,14 +33,30 @@ function App({ history, ...props }) {
       },
       body: JSON.stringify({ emailLogIn, passwordLogIn }),
     });
-    const resJson = await res.json();
-    setResJson(resJson);
-    console.log("res json==>>", resJson, resJson.isAuthenticated);
+    const json = await res.json();
+    setResJson(json);
+    console.log("res json==>>", resJson, resJson.accessToken,"<<--- Please!!!");
 
-    if (resJson.isAuthenticated) {
+    if (json.accessToken) {
       history.push("/home");
     }
   };
+  // useEffect(() => {
+  //   handleUserAuthorization()
+  //   console.log("heres you data inside of useeffect App.js", resJson)
+  // })
+  // const handleUserAuthorization = async () => {
+  //   const response = await fetch("/token")
+  //   const json = await response.json();
+
+  //   console.log("heres the json from handleUserAuth /home get request", json)
+
+  //   setResJson(json);
+
+  //   if (json.accessToken) {
+  //     history.push("/home")
+  //   }
+  // }
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormValues((prevValues) => ({ ...prevValues, [id]: value }));
@@ -53,7 +69,9 @@ function App({ history, ...props }) {
           <Switch>
             <Route exact path='/'>
               <LogOnForm
+                history={history}
                 resJson={resJson}
+                sendParentJson={setResJson}
                 handleInputChange={handleInputChange}
                 handleSubmit={handleSubmit}
               />
@@ -79,7 +97,7 @@ function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        auth.isAuthenticated ? (
+        auth.accessToken ? (
           children
         ) : (
           <Redirect

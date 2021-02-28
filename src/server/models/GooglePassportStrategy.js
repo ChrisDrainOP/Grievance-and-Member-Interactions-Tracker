@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 module.exports = function (passport) {
   passport.use(
     new GoogleStrategy(
+      //This Strategy should include a way to get the user email from it.
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -13,6 +14,7 @@ module.exports = function (passport) {
       async (accessToken, refreshToken, profile, done) => {
         const newUser = {
           googleId: profile.id,
+          email: profile.emails[0].value,
           displayName: profile.displayName,
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,

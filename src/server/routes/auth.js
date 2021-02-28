@@ -4,19 +4,23 @@ const passport = require("passport");
 
 //Auth with Google
 //Route get /auth/google
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 //Google auth callback
 //Get /auth/google/callback
 router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
-  (req, res) => res.redirect(process.env.REACT_APP_API_HOME_URL + "/home")
- 
+  (req, res) => res.json({ isAuthenticated: true })
+  // res.redirect(process.env.REACT_APP_API_HOME_URL + "/home")
 );
 //@desc Logout User
 //@route /auth/logout
 router.get("/logout", (req, res) => {
   req.logout();
+  console.log(req.session);
   res.redirect(process.env.REACT_APP_API_HOME_URL + "/");
 });
 module.exports = router;

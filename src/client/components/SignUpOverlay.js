@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { withRouter } from "react-router-dom";
 
-const SignUpOverlay = (props) => {
+const SignUpOverlay = ({history ,...props}) => {
+ 
   const [formValues, setFormValues] = useState({});
-  const [resJson, setResJson] = useState({
-    errors: false,
-    logInReady: false,
-    isAuthenticated: false,
-    userExist: false,
-  });
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -19,24 +15,21 @@ const SignUpOverlay = (props) => {
     const { email, confirmEmail, password, confirmPassword } = formValues;
 
     if (email !== confirmEmail) {
-
-      return setResJson((prev) => ({
+      return props.sendParentJson((prev) => ({
         ...prev,
         ["errors"]: "Email fields don't match",
       }));
     }
 
     if (password !== confirmPassword) {
-
-      return setResJson((prev) => ({
+      return props.sendParentJson((prev) => ({
         ...prev,
         ["errors"]: "Password fields don't match",
       }));
     }
 
     if (password.length < 6 || confirmPassword.length < 6) {
-
-      return setResJson((prev) => ({
+      return props.sendParentJson((prev) => ({
         ...prev,
         ["errors"]: "Password should be longer than 6 characters",
       }));
@@ -49,11 +42,14 @@ const SignUpOverlay = (props) => {
       },
       body: JSON.stringify({ email, fullName, password }),
     });
-    const resJson = await res.json();
-    console.log("res json==>>", resJson);
+    const json = await res.json();
+    console.log("heres the json object in SignUpOverlay", json)
 
-    setResJson(resJson);
-    
+    props.sendParentJson(json);
+    console.log(props.parentJson, json, "heres the stuff from signUpOverlay on submit")
+    if (json.accessToken) {
+      history.push("/home");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -69,6 +65,7 @@ const SignUpOverlay = (props) => {
     confirmPassword,
   } = formValues;
 
+
   return (
     <div className='bg-black bg-opacity-75 absolute z-10 h-screen w-full top-0 left-0'>
       <FontAwesomeIcon
@@ -82,20 +79,20 @@ const SignUpOverlay = (props) => {
         method='post'
       >
         <h3 className='text-white text-2xl pb-5'>Create your Account</h3>
-        
-        {resJson.errors ? (
+
+        {props.parentJson.errors ? (
           <h3 className='text-red-900 bg-black text-1xl mb-5 w-3/4'>
-            {resJson.errors}
+            {props.parentJson.errors}
           </h3>
         ) : null}
-        {resJson.userExist ? (
+        {props.parentJson.userExist ? (
           <h3 className='text-red-900 bg-black text-1xl mb-5 w-3/4 '>
-            {resJson.userExist}
+            {props.parentJson.userExist}
           </h3>
         ) : null}
-        {resJson.logInReady ? (
+        {props.parentJson.logInReady ? (
           <h3 className='text-green-500 text-1xl mb-5 '>
-            {resJson.logInReady}
+            {props.parentJson.logInReady}
           </h3>
         ) : null}
         <div className='mb-9'>
@@ -181,4 +178,4 @@ const SignUpOverlay = (props) => {
   );
 };
 
-export default SignUpOverlay;
+export default withRouter(SignUpOverlay);
