@@ -1,6 +1,5 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("./UserSchema");
-const mongoose = require("mongoose");
 
 module.exports = function (passport) {
   passport.use(
@@ -12,6 +11,7 @@ module.exports = function (passport) {
         callbackURL: "/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
+        console.log("I'm in the using strategy block");
         const newUser = {
           googleId: profile.id,
           email: profile.emails[0].value,
@@ -21,8 +21,9 @@ module.exports = function (passport) {
           image: profile.photos[0].value,
         };
         try {
+          console.log("I'm in the try block");
           let user = await User.findOne({ googleId: profile.id });
-
+          
           if (user) {
             done(null, user);
           } else {
@@ -30,12 +31,12 @@ module.exports = function (passport) {
             done(null, user);
           }
         } catch (err) {
-          console.log(err);
+          done(err);
         }
       }
     )
   );
-  passport.serializeUser((user, done) => done(null, user.id));
+  passport.serializeUser((user, done) => done(null, user._id));
 
   passport.deserializeUser((id, done) => {
     User.findById(id, (err, user) => done(err, user));
