@@ -7,31 +7,35 @@ const passport = require("passport");
 
 //Homepage / Dashboard
 //route = Get /home
-router.get("/token", ensureAuth, (req, res, next) => {
-  let refreshToken = req.cookie["refreshToken"];
-  console.log("RefreshToken Check in /home", refreshToken);
+router.get("/home/token", ensureAuth, (req, res, next) => {
+  let refreshToken = req.cookies["refreshToken"];
+
   if (!refreshToken) {
     return res.sendStatus(403);
+  } else {
+    console.log("inside home/token");
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_SECRET_TOKEN,
+      (err, decoded) => {
+        if (err) {
+          throw err;
+        }
+        const accessToken = generateAccessToken({
+          sub: decoded._id,
+          name: decoded.displayName,
+          email: decoded.email,
+          admin: decoded.isAdmin,
+        });
+        res.json({ accessToken: accessToken });
+      }
+    );
   }
-
-  passport.authenticate("jwt", (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.json({ userExist: "User does not exist" });
-    else {
-      console.log(req.cookies);
-      const accessToken = generateAccessToken({
-        sub: user._id,
-        name: user.displayName,
-        email: user.email,
-        admin: user.isAdmin,
-      });
-      res.json({ accessToken: accessToken });
-    }
-  })(req, res, next);
 });
 
 router.get("/userInfo", ensureAuth, (req, res) => {
   //Instead of database query I should pull the info from the jwt here
+  console.log(req.user, "here in user Info");
   let userInfo = { ...req.user._doc };
   User.findById({ _id: userInfo._id }, function (err, user) {
     if (err) throw err;

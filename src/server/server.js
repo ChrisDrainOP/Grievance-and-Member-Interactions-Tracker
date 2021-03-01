@@ -9,7 +9,7 @@ const cors = require("cors");
 const server = express();
 server.use(express.json());
 
-const cookies = require('cookie-parser');
+const cookies = require("cookie-parser");
 server.use(cookies());
 
 server.use(
@@ -17,9 +17,9 @@ server.use(
     origin: "http://localhost:3000",
     credentials: true,
   })
-  );
+);
 
-  const session = require("express-session");
+const session = require("express-session");
 
 //Connect to MongoDB database
 const MONGO_URL = process.env.MONGO_URL_TEST;
@@ -36,7 +36,6 @@ const passport = require("passport");
 //Passport config
 require("./models/GooglePassportStrategy")(passport);
 require("./models/LocalPassportStrategy")(passport);
-require("./models/JWTPassportStrategy")(passport);
 
 server.use(require("morgan")("combined"));
 
@@ -51,18 +50,16 @@ const sess = {
     mongooseConnection: mongoose.connection,
     ttl: 14 * 24 * 60 * 60,
   }),
-  resave: false,
-  saveunitialized: false,
+  resave: true,
+  saveunitialized: true,
   cookie: {
     httpOnly: true,
-    secure: true,
-    SameSite: "strict",
-    maxAge: 14 * 24 * 60 * 60 * 1000,
+    //secure: true,
+    //maxAge: 14 * 24 * 60 * 60 * 1000,
   },
 };
-
+server.set("trust proxy", true);
 server.use(session(sess));
-
 //Passport middleware
 server.use(passport.initialize());
 server.use(passport.session());

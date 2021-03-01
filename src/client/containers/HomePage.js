@@ -1,37 +1,40 @@
 import { React, useState, useEffect } from "react";
-import DisplayUserInfo from '../components/DisplayUserInfo';
+import DisplayUserInfo from "../components/DisplayUserInfo";
 import NavigationIcons from "../components/NavigationIcons.js";
 import GrievanceListContainer from "./GrievanceListContainer.js";
 import GrievanceTableContainer from "./GrievanceTableContainer";
 import GrievanceFormContainer from "./GrievanceFormContainer";
 
-const HomePage = (prop) => {
+const HomePage = ({ history, ...props }) => {
   const [displayName, setDisplayName] = useState("");
   const [image, setImage] = useState("");
 
   useEffect(() => {
     loadProfile();
-  });
+  },[]);
 
   const loadProfile = async () => {
-    const response = await fetch("/userInfo");
+    const response = await fetch("/userInfo", {
+      "method": "GET",
+      "credentials": "same-origin",
+    });
     const data = await response.json();
-    
+
     setDisplayName(
-      data.displayName.toLowerCase().replace(
-        /(\w{1})(\w+)/g,
-        function replacer(match, p1, p2) {
+      data.displayName
+        .toLowerCase()
+        .replace(/(\w{1})(\w+)/g, function replacer(match, p1, p2) {
           return [p1.toUpperCase(), p2, " "].join("");
-        }
-      )
+        })
     );
     setImage(data.image);
   };
 
+
   return (
     /*This component contains the entire app*/
     <div className='main-gradient pt-2 h-screen'>
-      <DisplayUserInfo displayName={displayName} image={image}/>
+      <DisplayUserInfo displayName={displayName} image={image} />
       <NavigationIcons />
       <GrievanceListContainer />
       <GrievanceTableContainer />

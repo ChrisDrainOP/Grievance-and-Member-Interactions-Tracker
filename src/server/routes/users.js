@@ -39,9 +39,16 @@ router.post("/login", (req, res, next) => {
           jwtSignUser,
           process.env.REFRESH_SECRET_TOKEN
         );
-        req.cookies["refreshToken"] = refreshToken;
-        console.log("Refresh Token right here in /login", req.cookies);
-        return res.json({
+        res.cookie("refreshToken", refreshToken, {
+          maxAge: 14 * 24 * 60 * 60,
+          httpOnly: true,
+        });
+        console.log(
+          "Refresh Token right here in /login",
+          req.cookies,
+          req.session
+        );
+        res.json({
           ...messages,
           ["logInReady"]: "Success Redirecting to DashBoard!",
           ["accessToken"]: accessToken,

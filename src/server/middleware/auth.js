@@ -1,14 +1,19 @@
 module.exports = {
   ensureAuth: function (req, res, next) {
-    
+    console.log(
+      req.cookies["refreshToken"],
+      req.isAuthenticated(),
+      req.session.passport.user
+    );
     if (req.isAuthenticated()) {
       
       return next();
     } else {
-      res.status(400).send({ error: "Not Logged In" });
+      res.status(400).json({ error: "Please Login" });
     }
   },
   ensureGuest: function (req, res, next) {
+    console.log(req.cookies, "In guest")
     if (req.isAuthenticated()) {
      
         return next();
