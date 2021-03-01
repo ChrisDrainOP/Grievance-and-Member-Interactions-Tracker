@@ -7,14 +7,11 @@ import {
   faUnlockAlt,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  withRouter,
-} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SignUpOverlay from "../components/SignUpOverlay";
 
-const LogOnForm = ({history ,...props}) => {
-  
+const LogOnForm = ({ history, ...props }) => {
   //Handle User Sign up
   const [isSignUpClicked, setSignUpClicked] = useState(false);
   const [isCloseOverlayClicked, setCloseOverlay] = useState(false);
@@ -31,21 +28,21 @@ const LogOnForm = ({history ,...props}) => {
   return (
     <div className='main-gradient h-screen '>
       <div className='ml-7'>
-        {props.resJson.errors ? (
+        {props.resJson.errors && (
           <h3 className='text-red-900 font-bold text-1xl relative top-3 text-center w-3/4'>
             {props.resJson.errors}
           </h3>
-        ) : null}
-        {props.resJson.userExist ? (
+        )}
+        {props.resJson.userExist && (
           <h3 className='text-red-900 font-bold text-1xl relative top-3 text-center w-3/4 '>
             {props.resJson.userExist}
           </h3>
-        ) : null}
-        {props.resJson.logInReady ? (
+        )}
+        {props.resJson.logInReady && (
           <h3 className='text-green-500 font-bold text-1xl relative top-3 text-center '>
             {props.resJson.logInReady}
           </h3>
-        ) : null}
+        )}
         <form className='' onSubmit={props.handleSubmit} method='post'>
           <div className='py-5'>
             <label className='block' htmlFor='email'></label>
@@ -99,7 +96,12 @@ const LogOnForm = ({history ,...props}) => {
         </form>
       </div>
       {isSignUpClicked ? (
-        <SignUpOverlay history={history} onCloseOverlayClick={handleCloseOverlay} parentJson={props.resJson} sendParentJson={props.sendParentJson} />
+        <SignUpOverlay
+          history={history}
+          onCloseOverlayClick={handleCloseOverlay}
+          parentJson={props.resJson}
+          sendParentJson={props.sendParentJson}
+        />
       ) : null}
       <div className='ml-2 pt-5 text-center'>
         <a href={`${process.env.REACT_APP_API_URL}/auth/google`}>

@@ -72,6 +72,7 @@ server.use("/", require("./routes/index"));
 server.use("/auth", require("./routes/auth"));
 //Passport Local user routes
 server.use("/users", require("./routes/users"));
+server.use("/add", require("./controllers/createMeetings"));
 
 server.listen(port, () => {
   console.log(`Listening on ${port}`);

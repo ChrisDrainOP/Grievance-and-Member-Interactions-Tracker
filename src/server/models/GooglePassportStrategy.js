@@ -23,6 +23,7 @@ module.exports = function (passport) {
         try {
           console.log("I'm in the try block");
           let user = await User.findOne({ googleId: profile.id });
+          console.log(User)
           
           if (user) {
             done(null, user);

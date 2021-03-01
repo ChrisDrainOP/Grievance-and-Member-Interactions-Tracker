@@ -31,6 +31,10 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  userTasks: [{
+    type: Schema.Types.ObjectId,
+    ref: "Meeting",
+  }],
 });
 
 const User = mongoose.model("User", UserSchema);

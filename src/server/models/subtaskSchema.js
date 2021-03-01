@@ -2,13 +2,14 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const subTaskSchema = new Schema({
+  creator: { type: Schema.Types.ObjectId, ref: "user" },
   createdAt: {
     type: Date,
     required: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,

@@ -34,12 +34,12 @@ const AddSubTask = () => {
           onClick={handleSubTaskDisplay}
         />
         <div className={`${isSubTaskDisplayed}`}>
-          <label htmlFor='reminder'>Remind Me</label>
+          <label htmlFor='subTaskReminder'>Remind Me</label>
           <input
             className='block bg-white'
             type='date'
-            name='reminder'
-            id='reminder'
+            name='subTaskReminder'
+            id='subTaskReminder'
           />
           <div className='pt-3'>
             <div className=' space-x-1 '>
