@@ -43,10 +43,9 @@ const SignUpOverlay = ({history ,...props}) => {
       body: JSON.stringify({ email, fullName, password }),
     });
     const json = await res.json();
-    console.log("heres the json object in SignUpOverlay", json)
 
     props.sendParentJson(json);
-    console.log(props.parentJson, json, "heres the stuff from signUpOverlay on submit")
+    
     if (json.accessToken) {
       history.push("/home");
     }

@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
-//Error and Success handling 
+//Error and Success handling
 const messagesLogin = {
   errorsLogin: false,
   accessToken: null,
@@ -112,7 +112,10 @@ router.post("/register", (req, res, next) => {
                   jwtSignUser,
                   process.env.REFRESH_SECRET_TOKEN
                 );
-                req.cookies["refreshToken"] = refreshToken;
+                res.cookie("refreshToken", refreshToken, {
+                  maxAge: 14 * 24 * 60 * 60 * 10,
+                  httpOnly: true,
+                });
                 return res.json({
                   ...messagesRegistration,
                   ["registrationLogInReady"]:
