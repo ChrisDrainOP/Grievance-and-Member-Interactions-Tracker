@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require("../models/UserSchema");
 const { ensureAuth } = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
-const passport = require("passport");
 
 //Homepage / Dashboard
 //route = Get /home

@@ -17,21 +17,21 @@ const SignUpOverlay = ({history ,...props}) => {
     if (email !== confirmEmail) {
       return props.sendParentJson((prev) => ({
         ...prev,
-        ["errors"]: "Email fields don't match",
+        ["registrationErrors"]: "Email fields don't match",
       }));
     }
 
     if (password !== confirmPassword) {
       return props.sendParentJson((prev) => ({
         ...prev,
-        ["errors"]: "Password fields don't match",
+        ["registrationErrors"]: "Password fields don't match",
       }));
     }
 
     if (password.length < 6 || confirmPassword.length < 6) {
       return props.sendParentJson((prev) => ({
         ...prev,
-        ["errors"]: "Password should be longer than 6 characters",
+        ["registrationErrors"]: "Password should be longer than 6 characters",
       }));
     }
 
@@ -80,19 +80,19 @@ const SignUpOverlay = ({history ,...props}) => {
       >
         <h3 className='text-white text-2xl pb-5'>Create your Account</h3>
 
-        {props.parentJson.errors ? (
-          <h3 className='text-red-900 bg-black text-1xl mb-5 w-3/4'>
-            {props.parentJson.errors}
+        {props.parentJson.registrationErrors ? (
+          <h3 className='text-red-900  text-1xl mb-5 w-3/4'>
+            {props.parentJson.registrationErrors}
           </h3>
         ) : null}
-        {props.parentJson.userExist ? (
-          <h3 className='text-red-900 bg-black text-1xl mb-5 w-3/4 '>
-            {props.parentJson.userExist}
+        {props.parentJson.registeredUserExist ? (
+          <h3 className='text-red-900  text-1xl mb-5 w-3/4 '>
+            {props.parentJson.registeredUserExist}
           </h3>
         ) : null}
-        {props.parentJson.logInReady ? (
+        {props.parentJson.registrationLogInReady ? (
           <h3 className='text-green-500 text-1xl mb-5 '>
-            {props.parentJson.logInReady}
+            {props.parentJson.registrationLogInReady}
           </h3>
         ) : null}
         <div className='mb-9'>

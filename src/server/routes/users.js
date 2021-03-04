@@ -5,12 +5,18 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
-//Error and Success handling Handling
-const messages = {
-  errors: false,
-  logInReady: false,
+//Error and Success handling 
+const messagesLogin = {
+  errorsLogin: false,
   accessToken: null,
   userExist: false,
+  logInReady: false,
+};
+const messagesRegistration = {
+  registrationErrors: false,
+  registrationLogInReady: false,
+  accessToken: null,
+  registeredUserExist: false,
 };
 
 //Login with email and password
@@ -18,10 +24,11 @@ const messages = {
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
-    if (!user) res.json({ ...messages, ["userExist"]: "User does not exist!" });
+    //Send Back errors to Login page specifically
+    if (!user)
+      res.json({ ...messagesLogin, ["userExist"]: "User does not exist!" });
     else {
       req.logIn(user, (err) => {
-        console.log("I have authenticated and I'm trying to log in");
         if (err) {
           throw err;
         }
@@ -40,16 +47,11 @@ router.post("/login", (req, res, next) => {
           process.env.REFRESH_SECRET_TOKEN
         );
         res.cookie("refreshToken", refreshToken, {
-          maxAge: 14 * 24 * 60 * 60,
+          maxAge: 14 * 24 * 60 * 60 * 10,
           httpOnly: true,
         });
-        console.log(
-          "Refresh Token right here in /login",
-          req.cookies,
-          req.session
-        );
         res.json({
-          ...messages,
+          ...messagesLogin,
           ["logInReady"]: "Success Redirecting to DashBoard!",
           ["accessToken"]: accessToken,
         });
@@ -67,8 +69,8 @@ router.post("/register", (req, res, next) => {
   //Check password length
   if (password.length < 6 || !email || !fullName) {
     res.json({
-      ...messages,
-      ["errors"]:
+      ...messagesRegistration,
+      ["registrationErrors"]:
         "Please properly fill out all fields. Remember password field should be longer than 6 characters",
     });
   }
@@ -77,8 +79,8 @@ router.post("/register", (req, res, next) => {
     if (err) throw err;
     if (user) {
       return res.json({
-        ...messages,
-        ["userExist"]: "This email is already in use.",
+        ...messagesRegistration,
+        ["registeredUserExist"]: "This email is already in use.",
       });
     }
     if (!user) {
@@ -92,10 +94,7 @@ router.post("/register", (req, res, next) => {
           newUser
             .save()
             .then((savedDoc) => {
-              console.log(savedDoc, "Heres Yours savedDoc!!!!!");
-
               req.logIn(savedDoc, (err) => {
-                console.log("I have authenticated and I'm trying to log in");
                 if (err) {
                   throw err;
                 }
@@ -114,18 +113,15 @@ router.post("/register", (req, res, next) => {
                   process.env.REFRESH_SECRET_TOKEN
                 );
                 req.cookies["refreshToken"] = refreshToken;
-                console.log(
-                  "Here are your cookies--->>> in /register",
-                  req.cookies
-                );
                 return res.json({
-                  ...messages,
-                  ["logInReady"]: "Success Redirecting to DashBoard!",
+                  ...messagesRegistration,
+                  ["registrationLogInReady"]:
+                    "Success Redirecting to DashBoard!",
                   ["accessToken"]: accessToken,
                 });
               });
             })
-            .catch((err) => res.json({ error: err }));
+            .catch((err) => res.json({ registrationErrors: err }));
         });
       });
     }

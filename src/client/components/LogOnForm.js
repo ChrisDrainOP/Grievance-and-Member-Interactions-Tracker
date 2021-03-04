@@ -45,35 +45,37 @@ const LogOnForm = ({ history, ...props }) => {
         )}
         <form className='' onSubmit={props.handleSubmit} method='post'>
           <div className='py-5'>
-            <label className='block' htmlFor='email'></label>
-            <span className='text-blue-200'>
-              <FontAwesomeIcon icon={faUser} className='relative right-2 ' />
-            </span>
-            <input
-              className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
-              type='text'
-              name='email'
-              placeholder='Email'
-              id='emailLogIn'
-              onChange={props.handleInputChange}
-            />
+            <label className='block' htmlFor='email'>
+              <span className='text-blue-200'>
+                <FontAwesomeIcon icon={faUser} className='relative right-2 ' />
+              </span>
+              <input
+                className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
+                type='text'
+                name='email'
+                placeholder='Email'
+                id='emailLogIn'
+                onChange={props.handleInputChange}
+              />
+            </label>
           </div>
           <div>
-            <label className='block' htmlFor='password'></label>
-            <span className='text-blue-200'>
-              <FontAwesomeIcon
-                icon={faUnlockAlt}
-                className='relative right-2 '
+            <label className='block' htmlFor='password'>
+              <span className='text-blue-200'>
+                <FontAwesomeIcon
+                  icon={faUnlockAlt}
+                  className='relative right-2 '
+                />
+              </span>
+              <input
+                className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
+                type='password'
+                name='password'
+                id='passwordLogIn'
+                placeholder='Password'
+                onChange={props.handleInputChange}
               />
-            </span>
-            <input
-              className='bg-transparent font-bold placeholder-white border-solid border-b-2 border-white placeholder-opacity-40'
-              type='password'
-              name='password'
-              id='passwordLogIn'
-              placeholder='Password'
-              onChange={props.handleInputChange}
-            />
+            </label>
           </div>
           <div className='flex space-x-4 mt-4 relative left-3'>
             <div>
