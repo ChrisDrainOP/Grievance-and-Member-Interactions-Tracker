@@ -56,9 +56,6 @@ const GrievanceForm = (props) => {
                 Step 2 to Arbitration
               </option>
               <option value='Step 3 Appeal'>Step 3 Appeal</option>
-              <option value='Information Request (RFI)'>
-                Information Request (RFI)
-              </option>
               <option value='Miscellaneous'>Miscellaneous</option>
             </select>
           </div>
