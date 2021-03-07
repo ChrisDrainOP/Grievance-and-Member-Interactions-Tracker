@@ -39,7 +39,6 @@ router.get(
 //@route /auth/logout
 router.get("/logout", (req, res) => {
   req.logout();
-  console.log(req.session);
   res.clearCookie("refreshToken");
   res.redirect(process.env.REACT_APP_API_HOME_URL + "/");
 });
