@@ -9,16 +9,20 @@ const HomePage = ({ history, ...props }) => {
   const [displayName, setDisplayName] = useState("");
   const [image, setImage] = useState("");
 
+  //Profile information is brought in from /server/routers/index.js
+  
   useEffect(() => {
     loadProfile();
   },[]);
 
   const loadProfile = async () => {
-    const response = await fetch("/userInfo", {
+    const response = await fetch("/home/token", {
       "method": "GET",
       "credentials": "same-origin",
     });
     const data = await response.json();
+
+    console.log(data)
 
     setDisplayName(
       data.displayName
