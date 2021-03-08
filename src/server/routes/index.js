@@ -4,6 +4,7 @@ const { ensureAuth } = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 
 //Data here is used to display user info on HomePage.js
+//Also a refreshToken is created in the browser to allow a persistent login along with an accessToken that allows access to private routes.
 
 //Homepage / Dashboard
 //route = Get /home/token
@@ -33,6 +34,11 @@ router.get("/home/token", ensureAuth, (req, res, next) => {
     );
   }
 });
+
+//Here I will code a solution to populate the homepage with the meetings that a user has created. I will use the req.user._id field to retrieve the id of the current user and populate with the path specified as Usertasks and the match being all task with the Task creator field having a matching user id.
+//@route /home/meetings
+//@desc get route for meeting population
+
 
 //Generate a new access token on page refresh or access token expiration
 function generateAccessToken(user) {
