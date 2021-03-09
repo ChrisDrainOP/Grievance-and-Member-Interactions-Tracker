@@ -34,7 +34,7 @@ router.post("/login", (req, res, next) => {
         }
         let jwtSignUser = {
           sub: user._id,
-          name: user.displayName,
+          displayName: user.displayName,
           email: user.email,
           admin: user.isAdmin,
         };

@@ -41,13 +41,11 @@ router.get("/home/token", ensureAuth, (req, res, next) => {
 //@desc get route for meeting population
 
 router.get("/home/meetings", ensureAuth, (req, res) => {
+  console.log(req.user);
   let user = User.findById({ _id: req.user._id })
-    .populate({
-      path: "userTasks",
-      match: {taskCreator: req.user._id},
-    })
-    .then(( userTasks) => {
-    res.json(userTasks)
+    .populate("userTasks")
+    .then((task) => {
+      res.json(task);
     });
 });
 
