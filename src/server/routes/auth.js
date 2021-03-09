@@ -17,9 +17,10 @@ router.get(
   function (req, res) {
     console.log(req.user, "I'm trying in google auth");
     let user = {
-      id: req.user._id,
+      sub: req.user._id,
       displayName: req.user.displayName,
       email: req.user.email,
+      admin: req.user.isAdmin,
       image: req.user.image,
     };
 

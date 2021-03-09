@@ -25,7 +25,7 @@ const HomePage = ({ history, ...props }) => {
     console.log(data)
 
     setDisplayName(
-      data.name
+      data.displayName
         .toLowerCase()
         .replace(/(\w{1})(\w+)/g, function replacer(match, p1, p2) {
           return [p1.toUpperCase(), p2, " "].join("");
