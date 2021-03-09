@@ -15,7 +15,6 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   function (req, res) {
-    console.log(req.user, "I'm trying in google auth");
     let user = {
       sub: req.user._id,
       displayName: req.user.displayName,
@@ -30,7 +29,6 @@ router.get(
       maxAge: 14 * 24 * 60 * 60,
       httpOnly: true,
     });
-    console.log("Refresh Token right here in /login", req.cookies, req.session);
 
     res.redirect(process.env.REACT_APP_API_HOME_URL + "/home");
   }

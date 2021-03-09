@@ -26,7 +26,7 @@ router.post("/login", (req, res, next) => {
     if (err) throw err;
     //Send Back errors to Login page specifically
     if (!user)
-      res.json({ ...messagesLogin, ["userExist"]: "User does not exist!" });
+      res.json({ ...messagesLogin, ["userExist"]: "Something wrong with email or password!" });
     else {
       req.logIn(user, (err) => {
         if (err) {

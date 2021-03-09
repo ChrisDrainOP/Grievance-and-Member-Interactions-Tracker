@@ -32,7 +32,7 @@ const UserTaskSchema = new Schema({
     type: String,
     required: false,
   },
-  subTask: [{ type: Schema.Types.ObjectId, ref: "SubTask" }],
+  subTask: [{ type: Schema.Types.ObjectId, ref: "Subtask" }],
 });
 
 const UserTask = mongoose.model("Meeting", UserTaskSchema);

@@ -64,7 +64,6 @@ function App({ history, ...props }) {
     setResJson(json);
 
     if (json.accessToken) {
-      console.log("I'm checking /app for resjso", resJson,"Then=.>>", json);
       history.push("/home");
     }
   };

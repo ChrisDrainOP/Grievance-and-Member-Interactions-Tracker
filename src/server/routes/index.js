@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuth } = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
-const User = require("../models/UserSchema");
+const UserTasks = require("../models/UserTaskSchema");
 
 //Data here is used to display user info on HomePage.js
 //Also a refreshToken is created in the browser to allow a persistent login along with an accessToken that allows access to private routes.
@@ -41,12 +41,12 @@ router.get("/home/token", ensureAuth, (req, res, next) => {
 //@desc get route for meeting population
 
 router.get("/home/meetings", ensureAuth, (req, res) => {
-  console.log(req.user);
-  let user = User.findById({ _id: req.user._id })
-    .populate("userTasks")
-    .then((task) => {
-      res.json(task);
-    });
+  console.log("heres is your user===>", req.user);
+  let tasks = UserTasks.find({
+    taskCreator: req.user._id,
+  })
+    .exec()
+    .then((userTasks) => res.json({ userTasks }));
 });
 
 //Generate a new access token on page refresh or access token expiration

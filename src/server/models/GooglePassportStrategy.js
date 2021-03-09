@@ -4,14 +4,12 @@ const User = require("./UserSchema");
 module.exports = function (passport) {
   passport.use(
     new GoogleStrategy(
-      //This Strategy should include a way to get the user email from it.
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "/auth/google/callback",
       },
       async (accessToken, refreshToken, profile, done) => {
-        console.log("I'm in the using strategy block");
         const newUser = {
           googleId: profile.id,
           email: profile.emails[0].value,
@@ -21,7 +19,6 @@ module.exports = function (passport) {
           image: profile.photos[0].value,
         };
         try {
-          console.log("I'm in the try block");
           let user = await User.findOne({ googleId: profile.id });
           console.log(User)
           
