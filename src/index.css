@@ -12,5 +12,5 @@
 }
 
 .task-number-icon-blue {
-  @apply bg-blue-300 px-0.5;
+  @apply bg-blue-300 px-0.5 rounded-xl text-blue-900 font-bold;
 }

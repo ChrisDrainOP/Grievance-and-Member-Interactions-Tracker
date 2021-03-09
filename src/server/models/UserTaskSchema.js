@@ -19,18 +19,22 @@ const UserTaskSchema = new Schema({
   actualDateOfEvent: {
     type: Date,
     required: false,
+    default: "",
   },
   reminder: {
     type: Date,
     required: false,
+    default: "",
   },
   extensionDate: {
     type: Date,
     required: false,
+    default: "",
   },
   description: {
     type: String,
     required: false,
+    default: "",
   },
   subTask: [{ type: Schema.Types.ObjectId, ref: "Subtask" }],
 });

@@ -7,7 +7,6 @@ const GrievanceListContainer = (props) => {
 
   useEffect(async () => {
     await loadMeetings();
-    console.log(meetings, "here are the meetings!!!");
   }, []);
 
   const loadMeetings = async () => {
