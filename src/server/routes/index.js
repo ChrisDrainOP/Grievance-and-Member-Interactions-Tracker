@@ -35,8 +35,6 @@ router.get("/home/token", ensureAuth, (req, res, next) => {
   }
 });
 
-//Here I will code a solution to populate the homepage with the meetings that a user has created. I will use the req.user._id field to retrieve the id of the current user and populate with the path specified as Usertasks and the match being all task with the Task creator field having a matching user id.
-
 //@route /home/meetings
 //@desc get route for meeting population
 
@@ -53,4 +51,6 @@ router.get("/home/meetings", ensureAuth, (req, res) => {
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, { expiresIn: "5min" });
 }
+
+
 module.exports = router;

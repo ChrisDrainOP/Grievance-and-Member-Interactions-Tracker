@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import NavLogoContainer from "../components/NavigationLogoContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearchPlus,
@@ -27,6 +28,7 @@ const LogOnForm = ({ history, ...props }) => {
 
   return (
     <div className='main-gradient h-screen '>
+    <NavLogoContainer />
       <div className='ml-7'>
         {props.resJson.errors && (
           <h3 className='text-red-900 font-bold text-1xl relative top-3 text-center w-3/4'>

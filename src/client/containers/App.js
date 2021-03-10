@@ -57,10 +57,6 @@ function App({ history, ...props }) {
 
     const json = await response.json();
 
-    console.log(
-      "heres you data inside of useeffect handleAuthorization ",
-      json
-    );
     setResJson(json);
 
     if (json.accessToken) {
@@ -68,8 +64,7 @@ function App({ history, ...props }) {
     }
   };
   return (
-    <div className='font-source-serif h-screen'>
-      <NavLogoContainer />
+    <div className='font-source-serif'>
       <div>
         <Switch>
           <Route exact path='/'>
@@ -96,7 +91,6 @@ export default withRouter(App);
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, ...rest }) {
   let auth = rest.resJson;
-  console.log(auth);
   return (
     <Route
       {...rest}

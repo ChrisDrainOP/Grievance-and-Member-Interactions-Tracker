@@ -11,7 +11,7 @@ import NavSearchBar from "./NavigationSearchBar";
 
 const NavigationIcons = (prop) => {
   return (
-    <div className='mt-5 pb-3'>
+    <div className='mt-2'>
       <ol className='flex flex-row space-x-1 justify-evenly'>
         <a href='http://'>
           <li className='border-solid border-r-2 border-b-2 border-black pr-1 m-auto'>
