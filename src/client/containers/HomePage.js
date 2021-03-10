@@ -2,14 +2,14 @@ import { React, useState, useEffect } from "react";
 import GrievanceListContainer from "./GrievanceListContainer.js";
 import GrievanceTableContainer from "./GrievanceTableContainer";
 import GrievanceFormContainer from "./GrievanceFormContainer";
-import { list } from "postcss";
 
 const HomePage = ({ history, ...props }) => {
   const [displayName, setDisplayName] = useState("");
   const [image, setImage] = useState("");
   const [meetings, setMeetings] = useState([]);
-  const [listType, setListType] = useState("");
+  const [listType, setListType] = useState([]);
   const [listName, setListName] = useState("");
+  const [eventHighlighter, setEventHighlighter] = useState("text-gray-400");
 
   //Profile information is brought in from /server/routers/index.js
 
@@ -83,6 +83,11 @@ const HomePage = ({ history, ...props }) => {
     }
   };
 
+  const handleEventRowClick = (e) => {
+    console.log(e.target)
+    setEventHighlighter("text-green-400")
+  }
+
   let incidentsAndInteractions = meetings.reduce((acc, cur) => {
     if (
       cur.meetingType === "Member Interaction" ||
@@ -142,7 +147,12 @@ const HomePage = ({ history, ...props }) => {
         stepThreeAppeal={stepThreeAppeal}
         miscellaneous={miscellaneous}
       />
-      <GrievanceTableContainer listType={listType} listName={listName} />
+      <GrievanceTableContainer
+        listType={listType}
+        listName={listName}
+        eventHighlighter={eventHighlighter}
+        handleEventRowClick={handleEventRowClick}
+      />
       <GrievanceFormContainer />
     </div>
   );
