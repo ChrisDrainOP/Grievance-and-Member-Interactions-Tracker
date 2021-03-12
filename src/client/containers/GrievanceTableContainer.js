@@ -1,26 +1,39 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faDotCircle } from "@fortawesome/free-solid-svg-icons";
 
 const GrievanceTableContainer = (props) => {
-
-  let events = props.listType;  
+  let events = props.listType;
 
   const listOfEvents = events.map((event) => {
 
-    function eventDate(date){
-      return new Date(date).toDateString()   
-  }
+    function eventDate(date) {
+      return new Date(date).toDateString();
+    }
 
     return (
-      <tr onClick={props.handleEventRowClick} className="mb-3">
-          <td className="relative left-2 border">
-          <FontAwesomeIcon className={`mr-2 ${props.eventHighlighter}`} icon={faDotCircle} />
-          {event.meetingName}</td>
-          <td className='text-center text-sm border'>
-            {event.actualDateOfEvent ? eventDate(event.actualDateOfEvent) : "Unknown"}
-          </td>
-      </tr>
+      <li
+        onClick={() => props.handleEventRowClick(event)}
+        key={event._id}
+        className='my-2 border w-full'
+      >
+        <label for={event._id} className='relative left-2 text-sm inline-block w-3/5'>
+          <span>
+            <input
+              type='checkbox'
+              name='event'
+              id={`${event._id}`}
+              value={`${event._id}`}
+              className='mr-3'
+            />
+          </span>
+          {event.meetingName}
+                </label>
+        <label for={event._id} className='text-center text-sm inline-block w-2/5'>
+          {event.actualDateOfEvent
+            ? eventDate(event.actualDateOfEvent)
+            : "Unknown"}
+        </label>
+
+      </li>
     );
   });
   return (
@@ -31,13 +44,13 @@ const GrievanceTableContainer = (props) => {
         </h3>
       </div>
       <div>
-        <table className="w-full">
-        <tr className="border">
-          <th>Description</th>
-          <th>Date of Event</th>
-        </tr>
-        {listOfEvents}
-        </table>
+        <ol className='w-full'>
+          <div className='border w-full flex'>
+            <h6 className='w-1/2 text-center'>Description</h6>
+            <h6 className='w-1/2 text-center'>Date of Event</h6>
+          </div>
+          {listOfEvents}
+        </ol>
       </div>
     </div>
   );

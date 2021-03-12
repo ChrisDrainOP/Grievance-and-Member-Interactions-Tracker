@@ -9,7 +9,8 @@ const HomePage = ({ history, ...props }) => {
   const [meetings, setMeetings] = useState([]);
   const [listType, setListType] = useState([]);
   const [listName, setListName] = useState("");
-  const [eventHighlighter, setEventHighlighter] = useState("text-gray-400");
+  const [eventHighlighter, setEventHighlighter] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   //Profile information is brought in from /server/routers/index.js
 
@@ -50,7 +51,6 @@ const HomePage = ({ history, ...props }) => {
   };
 
   const handleMeetingListClick = (e) => {
-    console.log(e.target.id);
     switch (e.target.id) {
       case "total":
         setListType(meetings);
@@ -83,10 +83,11 @@ const HomePage = ({ history, ...props }) => {
     }
   };
 
-  const handleEventRowClick = (e) => {
-    console.log(e.target)
-    setEventHighlighter("text-green-400")
-  }
+  const handleEventRowClick = (event) => {
+    setSelectedEvent(event);
+    setEventHighlighter(!eventHighlighter);
+  };
+
 
   let incidentsAndInteractions = meetings.reduce((acc, cur) => {
     if (
@@ -153,7 +154,7 @@ const HomePage = ({ history, ...props }) => {
         eventHighlighter={eventHighlighter}
         handleEventRowClick={handleEventRowClick}
       />
-      <GrievanceFormContainer />
+      <GrievanceFormContainer selectedEvent={selectedEvent} />
     </div>
   );
 };

@@ -4,6 +4,18 @@ import { faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
 import AddSubTask from "./AddSubTask";
 
 const GrievanceForm = (props) => {
+  const { selectedEvent } = props;
+  /*actualDateOfEvent: "2021-03-10T00:00:00.000Z"
+createdAt: "2021-03-05T09:10:42.744Z"
+description: "number 5"
+extensionDate: null
+meetingName: "5"
+meetingType: "Step 3 Appeal"
+reminder: null
+subTask: []
+taskCreator: "603c856ebdf9094728b7d1fe"
+__v: 0
+_id: "6041f59265d6da57100d25a6"*/
   return (
     <div className='mx-2 pt-5 relative '>
       <form
