@@ -9,7 +9,6 @@ const HomePage = ({ history, ...props }) => {
   const [meetings, setMeetings] = useState([]);
   const [listType, setListType] = useState([]);
   const [listName, setListName] = useState("");
-  const [eventHighlighter, setEventHighlighter] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   //Profile information is brought in from /server/routers/index.js
@@ -85,7 +84,6 @@ const HomePage = ({ history, ...props }) => {
 
   const handleEventRowClick = (event) => {
     setSelectedEvent(event);
-    setEventHighlighter(!eventHighlighter);
   };
 
 
@@ -151,8 +149,8 @@ const HomePage = ({ history, ...props }) => {
       <GrievanceTableContainer
         listType={listType}
         listName={listName}
-        eventHighlighter={eventHighlighter}
         handleEventRowClick={handleEventRowClick}
+
       />
       <GrievanceFormContainer selectedEvent={selectedEvent} />
     </div>
