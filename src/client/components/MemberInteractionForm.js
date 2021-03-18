@@ -1,62 +1,63 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
 import AddSubTask from "./AddSubTask";
 
-const GrievanceForm = (props) => {
+const MemberInteractionForm = (props) => {
   const { selectedEvent } = props;
-const [formValues, setFormValues] = useState({});
-const [resJson, setResJson] = useState({});
+  const [formValues, setFormValues] = useState({});
+  const [resJson, setResJson] = useState({});
 
-const handleInputChange = (e) => {
-  const { id, value } = e.target;
-  console.log(id, ": ", value);
-  setFormValues((prev) => ({ ...prev, [id]: value }));
-};
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    console.log(id, ": ", value);
+    setFormValues((prev) => ({ ...prev, [id]: value }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const {
-    meetingName,
-    meetingType,
-    meetingDate,
-    reminder,
-    extension,
-    description,
-  } = formValues;
-  if (!meetingName) {
-    setResJson({ errors: "Please include a meeting name at the top." });
-  }
-  if (!meetingType) {
-    setResJson({ errors: "Please include a Meeting Type" });
-  }
-  if (!description) {
-    setResJson({ errors: "Please include a description" });
-  }
-
-  const response = await fetch("/add/meeting", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+    const {
       meetingName,
       meetingType,
       meetingDate,
       reminder,
       extension,
       description,
-    }),
-  });
+    } = formValues;
+    if (!meetingName) {
+      setResJson({ errors: "Please include a meeting name at the top." });
+    }
+    if (!meetingType) {
+      setResJson({ errors: "Please include a Meeting Type" });
+    }
+    if (!description) {
+      setResJson({ errors: "Please include a description" });
+    }
 
-  const json = await response.json();
+    const response = await fetch("/add/meeting", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        meetingName,
+        meetingType,
+        meetingDate,
+        reminder,
+        extension,
+        description,
+      }),
+    });
 
-  setResJson(json);
+    const json = await response.json();
 
-  console.log(json, resJson, "I submitted");
-};
+    setResJson(json);
+
+    console.log(json, resJson, "I submitted");
+  };
   return (
-    <div className='bg-blue-100 px-3 pt-5 relative '>
+    <div className='bg-blue-300 px-3 pt-5 relative '>
+    <h3>Member Interaction</h3>
       <form
         action='/add/meeting'
         onSubmit={handleSubmit}
@@ -170,4 +171,4 @@ const handleSubmit = async (e) => {
   );
 };
 
-export default GrievanceForm;
+export default MemberInteractionForm;

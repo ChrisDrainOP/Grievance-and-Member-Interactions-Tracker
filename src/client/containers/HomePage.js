@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import GrievanceListContainer from "./GrievanceListContainer.js";
 import GrievanceTableContainer from "./GrievanceTableContainer";
-import GrievanceFormContainer from "./GrievanceFormContainer";
+
 
 const HomePage = ({ history, ...props }) => {
   const [displayName, setDisplayName] = useState("");
@@ -150,9 +150,10 @@ const HomePage = ({ history, ...props }) => {
         listType={listType}
         listName={listName}
         handleEventRowClick={handleEventRowClick}
+        selectedEvent={selectedEvent}
 
       />
-      <GrievanceFormContainer selectedEvent={selectedEvent} />
+
     </div>
   );
 };

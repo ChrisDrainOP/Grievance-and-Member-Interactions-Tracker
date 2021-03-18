@@ -1,4 +1,5 @@
 import React from "react";
+import GrievanceFormContainer from "./GrievanceFormContainer";
 
 const GrievanceTableContainer = (props) => {
   let events = props.listType;
@@ -59,6 +60,7 @@ const GrievanceTableContainer = (props) => {
           {listOfEvents}
         </ol>
       </div>
+      {props.selectedEvent ?<GrievanceFormContainer selectedEvent={props.selectedEvent} /> : null}
     </div>
   );
 };
