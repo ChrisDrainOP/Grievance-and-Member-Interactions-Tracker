@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
 import AddSubTask from "./AddSubTask";
 
 const GrievanceForm = (props) => {
@@ -73,19 +71,7 @@ const handleSubmit = async (e) => {
             {resJson.message}
           </h3>
         )}
-        <div className='  pb-4 text-left'>
-          <label htmlFor='meetingName' className='inline-block'>
-            <FontAwesomeIcon icon={faGripLinesVertical} />
-          </label>
-          <input
-            type='text'
-            name='meetingName'
-            placeholder='Meeting Name Here'
-            className='inline-block bg-blue-100 pl-1 font-bold'
-            id='meetingName'
-            onChange={handleInputChange}
-          />
-        </div>
+
         <div className='mt-3 w-full flex space-x-3'>
           <div className='relative top-6'>
             <label className='block text-left font-bold' htmlFor='tasks'>

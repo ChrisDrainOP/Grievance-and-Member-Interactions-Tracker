@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
 import AddSubTask from "./AddSubTask";
 
 const MemberInteractionForm = (props) => {
@@ -57,7 +55,7 @@ const MemberInteractionForm = (props) => {
   };
   return (
     <div className='bg-blue-300 px-3 pt-5 relative '>
-    <h3>Member Interaction</h3>
+    <h3 className="font-bold">Event Type: {selectedEvent.meetingType}</h3>
       <form
         action='/add/meeting'
         onSubmit={handleSubmit}
@@ -66,7 +64,7 @@ const MemberInteractionForm = (props) => {
       >
         <input
           type='submit'
-          className='text-1xl p-2 absolute right-0 top-2 bg-blue-400 border-2 rounded-lg'
+          className='text-1xl p-2 absolute right-2 top-1  bg-blue-400 border-2 rounded-lg'
           value='Save'
         />
         {resJson.message && (
@@ -74,48 +72,15 @@ const MemberInteractionForm = (props) => {
             {resJson.message}
           </h3>
         )}
-        <div className='  pb-4 text-left'>
-          <label htmlFor='meetingName' className='inline-block'>
-            <FontAwesomeIcon icon={faGripLinesVertical} />
-          </label>
-          <input
-            type='text'
-            name='meetingName'
-            placeholder='Meeting Name Here'
-            className='inline-block bg-blue-100 pl-1 font-bold'
-            id='meetingName'
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className='mt-3 w-full flex space-x-3'>
-          <div className='relative top-6'>
-            <label className='block text-left font-bold' htmlFor='tasks'>
-              Event Type:{" "}
-            </label>
-            <select
-              className='bg-white w-full block h-7 '
-              name='meetingType'
-              id='meetingType'
-              onChange={handleInputChange}
-            >
-              <option value=''>Event Type?</option>
-              <option value='Member Interaction'>Member Interaction</option>
-              <option value='Incident'>Incident</option>
-              <option value='Step 1'>Step 1</option>
-              <option value='Step 2'>Step 2</option>
-              <option value='Step 2 to Arbitration'>
-                Step 2 to Arbitration
-              </option>
-              <option value='Step 3 Appeal'>Step 3 Appeal</option>
-              <option value='Miscellaneous'>Miscellaneous</option>
-            </select>
-          </div>
-          <div className=''>
+
+        <div className='mt-3 flex space-x-3'>
+
+          <div className='mb-3'>
             <label className='text-left block font-bold' htmlFor='meetingDate'>
-              Actual Date of Meeting:
+              Date of Interaction:
             </label>
             <input
-              className='w-full block'
+              className='block'
               type='date'
               name='meetingDate'
               id='meetingDate'
@@ -123,8 +88,8 @@ const MemberInteractionForm = (props) => {
             />
           </div>
         </div>
-        <div className='flex mt-3 relative w-full space-x-3'>
-          <div className='relative top-6'>
+        <div className='flex'>
+          <div className='mb-5'>
             <label htmlFor='reminder' className='block text-left font-bold'>
               Reminder:
             </label>
@@ -133,18 +98,6 @@ const MemberInteractionForm = (props) => {
               name='reminder'
               className='w-full bg-white block'
               id='reminder'
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className='text-left'>
-            <label className='block font-bold' htmlFor='extension'>
-              Extension Date:<span className='block'>(If Applicable)</span>
-            </label>
-            <input
-              className='w-full block'
-              type='date'
-              name='extension'
-              id='extension'
               onChange={handleInputChange}
             />
           </div>
