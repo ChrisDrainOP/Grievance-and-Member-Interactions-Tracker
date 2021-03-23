@@ -6,9 +6,9 @@ const GrievanceFormContainer = ({ selectedEvent }) => {
   console.log("selected event in form", selectedEvent);
 
   return (
-    <div className='w-full'>
+    <div className='w-full h-screen'>
       {selectedEvent.meetingType === "Member Interaction" ? (
-        <MemberInteractionForm selectedEvent={selectedEvent}/>
+        <MemberInteractionForm selectedEvent={selectedEvent} />
       ) : null}
       {selectedEvent.meetingType === "Step 1" ? (
         <GrievanceForm selectedEvent={selectedEvent} />

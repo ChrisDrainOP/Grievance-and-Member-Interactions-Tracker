@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import GrievanceFormContainer from "./GrievanceFormContainer";
 
 const GrievanceTableContainer = (props) => {
   const [showAddNewForm, setShowAddNewForm] = useState('hidden')
@@ -17,6 +16,7 @@ const GrievanceTableContainer = (props) => {
   let events = props.listType;
 
   const listOfEvents = events.map((event) => {
+    
     function eventDate(date) {
       return new Date(date).toDateString();
     }
@@ -103,7 +103,7 @@ const GrievanceTableContainer = (props) => {
           </form>
         </div>
       </div>
-      <div className='text-md font-bold ml-5'>
+      <div className='text-md font-bold ml-5 mb-3'>
         <h3 className='inline-block'>
           {props.listName ? props.listName : "View Meetings"}
         </h3>
@@ -118,9 +118,7 @@ const GrievanceTableContainer = (props) => {
           {listOfEvents}
         </ol>
       </div>
-      {props.selectedEvent ? (
-        <GrievanceFormContainer selectedEvent={props.selectedEvent} />
-      ) : null}
+
     </div>
   );
 };

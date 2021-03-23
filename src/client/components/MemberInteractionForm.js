@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import AddSubTask from "./AddSubTask";
 
 const MemberInteractionForm = (props) => {
+  let date = new Date();
+  const testDate = date.toDateString();
+  console.log();
   const { selectedEvent } = props;
   const [formValues, setFormValues] = useState({});
   const [resJson, setResJson] = useState({});
@@ -39,10 +42,8 @@ const MemberInteractionForm = (props) => {
       },
       body: JSON.stringify({
         meetingName,
-        meetingType,
         meetingDate,
         reminder,
-        extension,
         description,
       }),
     });
@@ -54,8 +55,8 @@ const MemberInteractionForm = (props) => {
     console.log(json, resJson, "I submitted");
   };
   return (
-    <div className='bg-blue-300 px-3 pt-5 relative '>
-    <h3 className="font-bold">Event Type: {selectedEvent.meetingType}</h3>
+    <div className='main-gradient px-3 pt-5 relative '>
+      <h3 className='font-bold'>Event Type: {selectedEvent.meetingType}</h3>
       <form
         action='/add/meeting'
         onSubmit={handleSubmit}
@@ -74,7 +75,22 @@ const MemberInteractionForm = (props) => {
         )}
 
         <div className='mt-3 flex space-x-3'>
-
+          <div className='mb-3'>
+            <label
+              className='text-left block font-bold'
+              htmlFor='meetingDate'
+            ></label>
+            <input
+              className='block'
+              type='text'
+              name='meetingName'
+              id='meetingName'
+              value={props.selectedEvent.meetingName}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className='mt-3 flex space-x-3'>
           <div className='mb-3'>
             <label className='text-left block font-bold' htmlFor='meetingDate'>
               Date of Interaction:
@@ -102,6 +118,22 @@ const MemberInteractionForm = (props) => {
             />
           </div>
         </div>
+        <div className='flex w-full'>
+          <select name='dates_for_reminder' id='dates_for_reminder'>
+            <option value={`${date.toDateString()}`}>
+              {`Today ${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`}
+            </option>
+            <option value={`${date.toDateString()}`}>
+              {date.toDateString()}
+            </option>
+            <option value={`${date.toDateString()}`}>
+              {date.toDateString()}
+            </option>
+            <option value={`${date.toDateString()}`}>
+              {date.toDateString()}
+            </option>
+          </select>
+        </div>
         <div className='mt-3 '>
           <label
             className='block w-full text-left font-bold'
@@ -115,6 +147,7 @@ const MemberInteractionForm = (props) => {
             cols='30'
             rows='10'
             id='description'
+            value={props.selectedEvent.description}
             onChange={handleInputChange}
           ></textarea>
         </div>
