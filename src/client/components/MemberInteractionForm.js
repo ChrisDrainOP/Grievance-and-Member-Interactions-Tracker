@@ -2,9 +2,26 @@ import React, { useState } from "react";
 import AddSubTask from "./AddSubTask";
 
 const MemberInteractionForm = (props) => {
-  let date = new Date();
-  const testDate = date.toDateString();
-  console.log();
+  let dateSelectOptions = () => {
+    let date = new Date();
+    let i;
+    for (i = 0; i <= 7; i++) {
+      if (i === 4 || i === 6) {
+        continue;
+      }
+      console.log("I'm trying at least")
+      return (
+        <option
+          value={`${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`}
+        >
+          {`Today ${
+            date.getMonth() + i
+          }-${date.getDate()}-${date.getFullYear()}`}
+        </option>
+      );
+    }
+  };
+
   const { selectedEvent } = props;
   const [formValues, setFormValues] = useState({});
   const [resJson, setResJson] = useState({});
@@ -120,18 +137,7 @@ const MemberInteractionForm = (props) => {
         </div>
         <div className='flex w-full'>
           <select name='dates_for_reminder' id='dates_for_reminder'>
-            <option value={`${date.toDateString()}`}>
-              {`Today ${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`}
-            </option>
-            <option value={`${date.toDateString()}`}>
-              {date.toDateString()}
-            </option>
-            <option value={`${date.toDateString()}`}>
-              {date.toDateString()}
-            </option>
-            <option value={`${date.toDateString()}`}>
-              {date.toDateString()}
-            </option>
+            {dateSelectOptions}
           </select>
         </div>
         <div className='mt-3 '>
