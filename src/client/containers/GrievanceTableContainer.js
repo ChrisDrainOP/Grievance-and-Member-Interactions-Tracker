@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const GrievanceTableContainer = (props) => {
+  const [formValues, setFormValues] = useState({});
   const [showAddNewForm, setShowAddNewForm] = useState('hidden')
   const [isAddNewClicked, setIsAddNewClicked] = useState(false);
   const handleIsAddNewClicked = () => {
@@ -13,6 +14,20 @@ const GrievanceTableContainer = (props) => {
     setIsAddNewClicked(false)
     setShowAddNewForm("hidden")
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      
+  }
+  const handleInputChange = (e) => {
+    const {id, value} = e.target;
+    console.log(id, ": ", value);
+    setFormValues((prev) => 
+      ({...prev, [id]: value})
+    )
+
+  }
+
   let events = props.listType;
 
   const listOfEvents = events.map((event) => {
@@ -71,6 +86,7 @@ const GrievanceTableContainer = (props) => {
                 placeholder='Add Event Name'
                 className='inline-block bg-white mb-2 pl-1 font-bold'
                 onClick=""
+                onChange={handleInputChange}
                 id='meetingName'
               />
             </div>
@@ -79,7 +95,7 @@ const GrievanceTableContainer = (props) => {
                 className='block text-left font-bold'
                 htmlFor='tasks'
               ></label>
-              <select className='bg-white ' name='meetingType' id='meetingType'>
+              <select className='bg-white' onChange={handleInputChange} name='meetingType' id='meetingType'>
                 <option value=''>Event Type?</option>
                 <option value='Member Interaction'>Member Interaction</option>
                 <option value='Incident'>Incident</option>
@@ -111,9 +127,10 @@ const GrievanceTableContainer = (props) => {
 
       <div>
         <ol className='w-full' id='checkboxes'>
-          <div className=' w-full flex'>
-            <h6 className='w-1/2 text-center'>Description</h6>
-            <h6 className='w-1/2 text-center'>Date of Event</h6>
+          <div className=' w-full flex px-1'>
+            <h6 className='w-2/5 text-center'>Description</h6>
+            <h6 className='w-2/5 text-center'>Event</h6>
+            <h6 className='w-1/5 text-center'>Date</h6>
           </div>
           {listOfEvents}
         </ol>
