@@ -62,23 +62,23 @@ const HomePage = ({ history, ...props }) => {
         break;
       case "stepOnes":
         setListType(stepOnes);
-        setListName("Step 1 Events");
+        setListName("Step 1");
         break;
       case "stepTwos":
         setListType(stepTwos);
-        setListName("Step 2 Events");
+        setListName("Step 2");
         break;
       case "stepTwoToArbitration":
         setListType(stepTwoToArbitrations);
-        setListName("Step 2 to Arbitration Events");
+        setListName("Step 2 to Arbitration");
         break;
       case "stepThreeAppeal":
         setListType(stepThreeAppeal);
-        setListName("Step 3 to Appeal Events");
+        setListName("Step 3 Appeal");
         break;
       case "miscellaneous":
         setListType(miscellaneous);
-        setListName("Miscellaneous Events");
+        setListName("Miscellaneous");
         break;
     }
   };
@@ -90,8 +90,7 @@ const HomePage = ({ history, ...props }) => {
 
   let incidentsAndInteractions = meetings.reduce((acc, cur) => {
     if (
-      cur.meetingType === "Member Interaction" ||
-      cur.meetingType === "Incident"
+      cur.meetingType === "Incidents and Interactions"
     ) {
       acc.push(cur);
     }
@@ -152,6 +151,7 @@ const HomePage = ({ history, ...props }) => {
         listName={listName}
         handleEventRowClick={handleEventRowClick}
         selectedEvent={selectedEvent}
+        loadMeetings={loadMeetings}
       />
       {selectedEvent ? (
         <GrievanceFormContainer selectedEvent={selectedEvent} />

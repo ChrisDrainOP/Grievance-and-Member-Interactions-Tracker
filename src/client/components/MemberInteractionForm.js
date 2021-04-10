@@ -52,7 +52,7 @@ const MemberInteractionForm = (props) => {
       setResJson({ errors: "Please include a description" });
     }
 
-    const response = await fetch("/add/meeting", {
+    const response = await fetch("/add/member-interaction", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

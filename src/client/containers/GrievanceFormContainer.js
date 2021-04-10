@@ -7,7 +7,7 @@ const GrievanceFormContainer = ({ selectedEvent }) => {
 
   return (
     <div className='w-full h-screen'>
-      {selectedEvent.meetingType === "Member Interaction" ? (
+      {selectedEvent.meetingType === "Incidents and Interactions" ? (
         <MemberInteractionForm selectedEvent={selectedEvent} />
       ) : null}
       {selectedEvent.meetingType === "Step 1" ? (
