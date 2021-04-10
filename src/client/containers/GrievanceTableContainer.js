@@ -53,7 +53,7 @@ const GrievanceTableContainer = (props) => {
       }),
     });
 
-props.loadMeetings();
+{window.location.reload()}
   };
   const handleInputChange = (e) => {
     const { id, value } = e.target;

@@ -148,6 +148,7 @@ const HomePage = ({ history, ...props }) => {
       />
       <GrievanceTableContainer
         listType={listType}
+        setListType={setListType}
         listName={listName}
         handleEventRowClick={handleEventRowClick}
         selectedEvent={selectedEvent}
