@@ -193,9 +193,8 @@ const GrievanceTableContainer = (props) => {
       <div>
         <ol className='w-full' id='checkboxes'>
           <div className=' w-full flex px-1'>
-            <h6 className='w-2/5 text-center'>Description</h6>
-            <h6 className='w-2/5 text-center'>Event</h6>
-            <h6 className='w-1/5 text-center'>Date</h6>
+            <h6 className='w-3/5 text-center'>Description</h6>
+            <h6 className='w-2/5 text-center'>Date</h6>
           </div>
           {listOfEvents}
         </ol>
