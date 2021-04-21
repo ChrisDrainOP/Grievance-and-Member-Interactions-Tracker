@@ -22,7 +22,7 @@ const GrievanceTableContainer = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { meetingType, meetingName } = formValues;
+    const { meetingType, meetingDate, meetingName } = formValues;
 
     console.log(meetingType, "here");
     if (meetingName === "") {
@@ -49,11 +49,14 @@ const GrievanceTableContainer = (props) => {
       },
       body: JSON.stringify({
         meetingName,
+        meetingDate,
         meetingType,
       }),
     });
 
-{window.location.reload()}
+    {
+      window.location.reload();
+    }
   };
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -101,8 +104,6 @@ const GrievanceTableContainer = (props) => {
     );
   });
 
-
-
   return (
     <div className='h-screen bg-blue-300'>
       <div className='flex py-4'>
@@ -137,6 +138,24 @@ const GrievanceTableContainer = (props) => {
                 onChange={handleInputChange}
                 id='meetingName'
               />
+            </div>
+            <div className='mt-3 flex space-x-3'>
+              <div className='mb-3'>
+                <label
+                  className='text-left block font-bold'
+                  htmlFor='meetingDate'
+                >
+                  Date of Interaction:
+                </label>
+                <input
+                  className='block'
+                  type='date'
+                  name='meetingDate'
+                  id='meetingDate'
+                  onChange={handleInputChange}
+                  value={formValues.meetingDate}
+                />
+              </div>
             </div>
             <div className=''>
               <label

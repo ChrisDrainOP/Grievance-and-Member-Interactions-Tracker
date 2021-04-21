@@ -107,20 +107,7 @@ const MemberInteractionForm = (props) => {
             />
           </div>
         </div>
-        <div className='mt-3 flex space-x-3'>
-          <div className='mb-3'>
-            <label className='text-left block font-bold' htmlFor='meetingDate'>
-              Date of Interaction:
-            </label>
-            <input
-              className='block'
-              type='date'
-              name='meetingDate'
-              id='meetingDate'
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
+
         <div className='flex'>
           <div className='mb-5'>
             <label htmlFor='reminder' className='block text-left font-bold'>

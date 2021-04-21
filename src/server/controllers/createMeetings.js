@@ -6,20 +6,16 @@ const UserTaskSchema = require("../models/UserTaskSchema");
 //@desc Add meeting name and event type to DB
 //@route /add/meeting
 router.post("/meeting", ensureAuth, (req, res, next) => {
-  console.log(
-    req.body,
-    "If you got to /add/meeting and user over here-->>",
-    req.user._id,
-    "+++++"
-  );
+
   let {
-    meetingName,
+    meetingName, meetingDate,
     meetingType,
   } = req.body;
 
   let UserTask = new UserTaskSchema({
     taskCreator: req.user._id,
     meetingName: meetingName,
+    actualDateOfEvent: meetingDate,
     meetingType: meetingType,
   });
   console.log(UserTask, "heres the userTask with Id hopefully", UserTask._id);
