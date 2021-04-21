@@ -67,8 +67,16 @@ const GrievanceTableContainer = (props) => {
   let events = props.listType;
 
   const listOfEvents = events.map((event) => {
+
     function eventDate(date) {
-      return new Date(date).toDateString();
+      let dateRegEx = date
+        .replace(/(T)00:00:00.000Z/g, "");
+      
+        let newDate = new Date(dateRegEx)
+        let actualDate =  new Date( newDate.getTime() + newDate.getTimezoneOffset() * 60000
+        );
+        return actualDate.toDateString();
+        
     }
 
     return (

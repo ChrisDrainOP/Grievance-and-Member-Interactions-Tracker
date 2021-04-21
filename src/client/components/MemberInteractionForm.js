@@ -2,26 +2,21 @@ import React, { useState } from "react";
 import AddSubTask from "./AddSubTask";
 
 const MemberInteractionForm = (props) => {
-  let dateSelectOptions = () => {
-    let date = new Date();
-    let i;
-    for (i = 0; i <= 7; i++) {
-      if (i === 4 || i === 6) {
-        continue;
-      }
-      console.log("I'm trying at least")
-      return (
-        <option
-          value={`${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`}
-        >
-          {`Today ${
-            date.getMonth() + i
-          }-${date.getDate()}-${date.getFullYear()}`}
-        </option>
-      );
+  let dateRegEx = props.selectedEvent.actualDateOfEvent.replace(
+    /(T)00:00:00.000Z/g, " "
+  )
+  .replace(/(\d{4})-(\d{2})-(\d{2})/, function (match, p1,p2,p3) {
+    return [p1,p2,p3].join(",")
+  });
+  let dateOfEventProperFormat = (eventDate) => {
+    let date = new Date(eventDate);
+    let formatDate = `${date.getFullYear()}-0${date.getMonth() + 1}-${
+      date.getDate()
+    }`;
+      console.log(dateRegEx)
+      return formatDate;
     }
-  };
-
+  
   const { selectedEvent } = props;
   const [formValues, setFormValues] = useState({});
   const [resJson, setResJson] = useState({});
@@ -107,7 +102,23 @@ const MemberInteractionForm = (props) => {
             />
           </div>
         </div>
-
+        <div className='mt-3 flex space-x-3'>
+          <div className='mb-3'>
+            <label className='text-left block font-bold' htmlFor='meetingDate'>
+              Date of Interaction:
+            </label>
+            <input
+              className='block'
+              type='date'
+              name='meetingDate'
+              id='meetingDate'
+              onChange={handleInputChange}
+              value={dateOfEventProperFormat(
+                dateRegEx
+              )}
+            />
+          </div>
+        </div>
         <div className='flex'>
           <div className='mb-5'>
             <label htmlFor='reminder' className='block text-left font-bold'>
@@ -121,11 +132,6 @@ const MemberInteractionForm = (props) => {
               onChange={handleInputChange}
             />
           </div>
-        </div>
-        <div className='flex w-full'>
-          <select name='dates_for_reminder' id='dates_for_reminder'>
-            {dateSelectOptions}
-          </select>
         </div>
         <div className='mt-3 '>
           <label
