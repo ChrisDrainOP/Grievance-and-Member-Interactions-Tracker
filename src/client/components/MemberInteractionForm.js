@@ -95,7 +95,7 @@ const MemberInteractionForm = (props) => {
           <div className='mb-3'>
             <label
               className='text-left block font-bold'
-              htmlFor='meetingDate'
+              htmlFor='meetingName'
             ></label>
             <input
               className='block'
