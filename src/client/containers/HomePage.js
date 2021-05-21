@@ -11,12 +11,17 @@ const HomePage = ({ history, ...props }) => {
   const [listType, setListType] = useState([]);
   const [listName, setListName] = useState("");
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [loading, setLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(10);
 
   //Profile information is brought in from /server/routers/index.js
 
   useEffect(() => {
+    setLoading(true);
     loadProfile();
     loadMeetings();
+    setLoading(false);
   }, []);
 
   const loadProfile = async () => {
@@ -45,7 +50,6 @@ const HomePage = ({ history, ...props }) => {
     });
 
     let data = await response.json();
-    console.log(data.userTasks, "heres the data from /home/meetings");
 
     setMeetings([...data.userTasks]);
   };
@@ -153,6 +157,12 @@ const HomePage = ({ history, ...props }) => {
         handleEventRowClick={handleEventRowClick}
         selectedEvent={selectedEvent}
         loadMeetings={loadMeetings}
+        loading={loading}
+        setLoading={setLoading}
+        setPostsPerPage={setPostsPerPage}
+        postsPerPage={postsPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
       {selectedEvent ? (
         <GrievanceFormContainer selectedEvent={selectedEvent} />

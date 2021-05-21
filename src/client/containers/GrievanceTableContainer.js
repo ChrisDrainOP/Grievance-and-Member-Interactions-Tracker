@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Pagination from "../components/Pagination";
 
 const GrievanceTableContainer = (props) => {
   const [formValues, setFormValues] = useState({});
@@ -64,9 +65,18 @@ const GrievanceTableContainer = (props) => {
     setFormValues((prev) => ({ ...prev, [id]: value }));
   };
 
-  let events = props.listType;
+  //Pagination Code Start
+const events = props.listType;
+const indexOfLastPost = props.currentPage * props.postsPerPage;
+const indexOfFirstPost = indexOfLastPost - props.postsPerPage;
+const currentPost = events.slice(indexOfFirstPost, indexOfLastPost);
+//Change Page
+const paginate = (pageNumber) => {
+  props.setCurrentPage(pageNumber);
+}
 
-  const listOfEvents = events.map((event) => {
+//Map Event for paginated code
+  const listOfEvents = currentPost.map((event) => {
 
     function eventDate(date) {
       let dateRegEx = date
@@ -80,6 +90,7 @@ const GrievanceTableContainer = (props) => {
     }
 
     return (
+      <div>
       <li
         onClick={() => props.handleEventRowClick(event)}
         key={event._id}
@@ -109,8 +120,11 @@ const GrievanceTableContainer = (props) => {
             : "Unknown"}
         </label>
       </li>
+              </div>
     );
   });
+
+
 
   return (
     <div className='h-screen bg-blue-300'>
@@ -181,7 +195,6 @@ const GrievanceTableContainer = (props) => {
                 <option value='Incidents and Interactions'>
                   Incidents and Interactions
                 </option>
-                <option value='Incident'>Incident</option>
                 <option value='Step 1'>Step 1</option>
                 <option value='Step 2'>Step 2</option>
                 <option value='Step 2 to Arbitration'>
@@ -223,8 +236,15 @@ const GrievanceTableContainer = (props) => {
             <h6 className='w-3/5 text-center'>Description</h6>
             <h6 className='w-2/5 text-center'>Date</h6>
           </div>
+          <div className=''>
           {listOfEvents}
+          </div>
         </ol>
+       {currentPost.length > 0 && <Pagination 
+              postsPerPage={props.postsPerPage}
+              totalPosts={events.length}
+              paginate={paginate}
+              />}
       </div>
     </div>
   );
