@@ -23,9 +23,12 @@ const HomePage = ({ history, ...props }) => {
     setLoading(false);
   }, []);
 
+  const handleClick = () => {
+    let element = document.getElementById("grievance-table");
+    element.scrollIntoView();
+  }
 
-
-  //Load all user meetings from the Databas
+  //Load all user meetings from the Database
   const loadMeetings = async () => {
     let response = await fetch("home/meetings", {
       method: "GET",
@@ -33,7 +36,6 @@ const HomePage = ({ history, ...props }) => {
     });
 
     let data = await response.json();
-
 
     //Show the currents user name and display image
     setDisplayName(
@@ -53,30 +55,37 @@ const HomePage = ({ history, ...props }) => {
       case "total":
         setListType(meetings);
         setListName("View All");
+        handleClick()
         break;
       case "incidentsAndInteractions":
         setListType(incidentsAndInteractions);
         setListName("Incidents and Interactions");
+        handleClick()
         break;
       case "stepOnes":
         setListType(stepOnes);
         setListName("Step 1");
+        handleClick()
         break;
       case "stepTwos":
         setListType(stepTwos);
         setListName("Step 2");
+        handleClick()
         break;
       case "stepTwoToArbitration":
         setListType(stepTwoToArbitrations);
         setListName("Step 2 to Arbitration");
+        handleClick()
         break;
       case "stepThreeAppeal":
         setListType(stepThreeAppeal);
         setListName("Step 3 Appeal");
+        handleClick()
         break;
       case "miscellaneous":
         setListType(miscellaneous);
         setListName("Miscellaneous");
+        handleClick()
         break;
     }
   };

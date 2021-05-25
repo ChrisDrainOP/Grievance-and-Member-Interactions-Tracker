@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "../components/Pagination";
@@ -11,6 +11,7 @@ const GrievanceTableContainer = (props) => {
     eventNameMissing: "",
     meetingTypeMissing: "",
   });
+  
   const handleIsAddNewClicked = () => {
     setIsAddNewClicked(true);
     setShowAddNewForm("block");
@@ -73,6 +74,7 @@ const currentPost = events.slice(indexOfFirstPost, indexOfLastPost);
 //Change Page
 const paginate = (pageNumber) => {
   props.setCurrentPage(pageNumber);
+
 }
 
 //Map Event for paginated code
@@ -220,7 +222,7 @@ const paginate = (pageNumber) => {
           </form>
         </div>
       </div>
-      <div className='text-md font-bold ml-5 mb-3'>
+      <div className='text-md font-bold ml-5 mb-3' id="grievance-table">
         <h3 className='inline-block'>
           {props.listName ? (
             <p>{props.listName + " "} Events</p>
