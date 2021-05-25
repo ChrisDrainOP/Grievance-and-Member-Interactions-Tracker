@@ -48,7 +48,7 @@ function App({ history, ...props }) {
   }, []);
 
   const handleUserAuthorization = async () => {
-    const response = await fetch("/home/token", {
+    const response = await fetch("/home/meetings", {
       method: "GET",
       "Content-Type": "application.json",
       credentials: "same-origin",

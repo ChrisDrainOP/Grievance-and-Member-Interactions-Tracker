@@ -19,17 +19,21 @@ const HomePage = ({ history, ...props }) => {
 
   useEffect(() => {
     setLoading(true);
-    loadProfile();
     loadMeetings();
     setLoading(false);
   }, []);
 
-  const loadProfile = async () => {
-    const response = await fetch("/home/token", {
+
+
+  //Load all user meetings from the Databas
+  const loadMeetings = async () => {
+    let response = await fetch("home/meetings", {
       method: "GET",
       credentials: "same-origin",
     });
-    const data = await response.json();
+
+    let data = await response.json();
+
 
     //Show the currents user name and display image
     setDisplayName(
@@ -40,16 +44,6 @@ const HomePage = ({ history, ...props }) => {
         })
     );
     setImage(data.image);
-  };
-
-  //Load all user meetings from the Databas
-  const loadMeetings = async () => {
-    let response = await fetch("home/meetings", {
-      method: "GET",
-      credentials: "same-origin",
-    });
-
-    let data = await response.json();
 
     setMeetings([...data.userTasks]);
   };
@@ -135,6 +129,7 @@ const HomePage = ({ history, ...props }) => {
     }
     return acc;
   }, []);
+
   return (
     /*This component contains the entire app*/
     <div className='main-gradient pt-2'>

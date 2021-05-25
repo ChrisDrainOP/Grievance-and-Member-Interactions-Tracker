@@ -7,9 +7,11 @@ const UserTasks = require("../models/UserTaskSchema");
 //Data here is used to display user info on HomePage.js
 //Also a refreshToken is created in the browser to allow a persistent login along with an accessToken that allows access to private routes.
 
-//Homepage / Dashboard
-//route = Get /home/token
-router.get("/home/token", ensureAuth, (req, res, next) => {
+//@route /home/meetings
+//@desc get route for meeting population
+
+router.get("/home/meetings", ensureAuth, (req, res) => {
+  console.log("heres is your user===>", req.user);
   let refreshToken = req.cookies["refreshToken"];
 
   if (!refreshToken) {
@@ -29,22 +31,17 @@ router.get("/home/token", ensureAuth, (req, res, next) => {
           admin: decoded.isAdmin,
           image: decoded.image,
         });
-        res.json({ accessToken: accessToken, ...decoded });
+        
+        let tasks = UserTasks.find({
+          taskCreator: req.user._id,
+        })
+          .exec()
+          .then((userTasks) => res.json({ accessToken: accessToken, userTasks: userTasks, ...decoded  }));
+
       }
     );
   }
-});
-
-//@route /home/meetings
-//@desc get route for meeting population
-
-router.get("/home/meetings", ensureAuth, (req, res) => {
-  console.log("heres is your user===>", req.user);
-  let tasks = UserTasks.find({
-    taskCreator: req.user._id,
-  })
-    .exec()
-    .then((userTasks) => res.json({ userTasks }));
+  
 });
 
 //Generate a new access token on page refresh or access token expiration
