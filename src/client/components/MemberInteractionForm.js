@@ -3,17 +3,22 @@ import AddSubTask from "./AddSubTask";
 
 const MemberInteractionForm = (props) => {
   let dateRegEx = props.selectedEvent.actualDateOfEvent.replace(
-    /(T)00:00:00.000Z/g, " "
+    /(T)00:00:00.000Z/, ""
   )
   .replace(/(\d{4})-(\d{2})-(\d{2})/, function (match, p1,p2,p3) {
     return [p1,p2,p3].join(",")
   });
   let dateOfEventProperFormat = (eventDate) => {
     let date = new Date(eventDate);
+    if(date.getDate()<10) {
+      let formatDate = `${date.getFullYear()}-0${date.getMonth() + 1}-0${
+        date.getDate()
+      }`;
+      return formatDate
+    }
     let formatDate = `${date.getFullYear()}-0${date.getMonth() + 1}-${
       date.getDate()
     }`;
-      console.log(dateRegEx)
       return formatDate;
     }
   

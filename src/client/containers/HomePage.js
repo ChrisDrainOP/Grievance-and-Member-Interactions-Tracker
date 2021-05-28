@@ -13,7 +13,7 @@ const HomePage = ({ history, ...props }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage, setPostsPerPage] = useState(8);
 
   //Profile information is brought in from /server/routers/index.js
 

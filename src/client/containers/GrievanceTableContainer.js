@@ -82,11 +82,12 @@ const paginate = (pageNumber) => {
 
     function eventDate(date) {
       let dateRegEx = date
-        .replace(/(T)00:00:00.000Z/g, "");
+        .replace(/(T)00:00:00.000Z/, "");
       
         let newDate = new Date(dateRegEx)
         let actualDate =  new Date( newDate.getTime() + newDate.getTimezoneOffset() * 60000
         );
+        console.log(actualDate)
         return actualDate.toDateString();
         
     }
@@ -129,7 +130,7 @@ const paginate = (pageNumber) => {
 
 
   return (
-    <div className='h-screen bg-blue-300'>
+    <div className='h-screen bg-blue-300 relative'>
       <div className='flex py-4'>
         <div className='border-black ml-4'>
           <button className='mb-2' onClick={handleIsAddNewClicked}>
@@ -232,7 +233,7 @@ const paginate = (pageNumber) => {
         </h3>
       </div>
 
-      <div>
+      <div className="">
         <ol className='w-full' id='checkboxes'>
           <div className=' w-full flex px-1'>
             <h6 className='w-3/5 text-center'>Description</h6>
