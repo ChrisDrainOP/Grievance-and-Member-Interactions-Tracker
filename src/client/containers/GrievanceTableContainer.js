@@ -1,16 +1,73 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import Pagination from "../components/Pagination";
 
 const GrievanceTableContainer = (props) => {
   const [formValues, setFormValues] = useState({});
   const [showAddNewForm, setShowAddNewForm] = useState("hidden");
   const [isAddNewClicked, setIsAddNewClicked] = useState(false);
+  const [listOfEvents, setListOfEvents] = useState();
   const [resJson, setResJson] = useState({
     eventNameMissing: "",
     meetingTypeMissing: "",
   });
+
+  useEffect(() => {
+
+    //Pagination Code Start
+props.setCurrentPost(props.listType.slice(props.offset, props.offset + props.perPage))
+props.setPageCount(Math.ceil(props.listType.length / props.perPage))
+console.log(props.currentPost)
+setListOfEvents(props.currentPost.map((event) => {
+
+  function eventDate(date) {
+    let dateRegEx = date
+      .replace(/(T)00:00:00.000Z/, "");
+    
+      let newDate = new Date(dateRegEx)
+      let actualDate =  new Date( newDate.getTime() + newDate.getTimezoneOffset() * 60000
+      );
+      console.log(actualDate)
+      return actualDate.toDateString();
+      
+  }
+
+  return (
+    <div>
+    <li
+      onClick={() => props.handleEventRowClick(event)}
+      key={event._id}
+      className='my-2 w-full'
+    >
+      <label
+        for={event._id}
+        className='relative left-2 text-sm inline-block w-3/5'
+      >
+        <span>
+          <input
+            type='radio'
+            name='event'
+            id={`${event._id}`}
+            value={`${event._id}`}
+            className='mr-3'
+          />
+        </span>
+        {event.meetingName}
+      </label>
+      <label
+        for={event._id}
+        className='text-center text-sm inline-block w-2/5'
+      >
+        {event.actualDateOfEvent
+          ? eventDate(event.actualDateOfEvent)
+          : "Unknown"}
+      </label>
+    </li>
+            </div>
+  );
+}))
+props.handleClick();
+  }, [props.offset])
   
   const handleIsAddNewClicked = () => {
     setIsAddNewClicked(true);
@@ -66,66 +123,9 @@ const GrievanceTableContainer = (props) => {
     setFormValues((prev) => ({ ...prev, [id]: value }));
   };
 
-  //Pagination Code Start
-const events = props.listType;
-const indexOfLastPost = props.currentPage * props.postsPerPage;
-const indexOfFirstPost = indexOfLastPost - props.postsPerPage;
-const currentPost = events.slice(indexOfFirstPost, indexOfLastPost);
-//Change Page
-const paginate = (pageNumber) => {
-  props.setCurrentPage(pageNumber);
 
-}
 
 //Map Event for paginated code
-  const listOfEvents = currentPost.map((event) => {
-
-    function eventDate(date) {
-      let dateRegEx = date
-        .replace(/(T)00:00:00.000Z/, "");
-      
-        let newDate = new Date(dateRegEx)
-        let actualDate =  new Date( newDate.getTime() + newDate.getTimezoneOffset() * 60000
-        );
-        console.log(actualDate)
-        return actualDate.toDateString();
-        
-    }
-
-    return (
-      <div>
-      <li
-        onClick={() => props.handleEventRowClick(event)}
-        key={event._id}
-        className='my-2 w-full'
-      >
-        <label
-          for={event._id}
-          className='relative left-2 text-sm inline-block w-3/5'
-        >
-          <span>
-            <input
-              type='radio'
-              name='event'
-              id={`${event._id}`}
-              value={`${event._id}`}
-              className='mr-3'
-            />
-          </span>
-          {event.meetingName}
-        </label>
-        <label
-          for={event._id}
-          className='text-center text-sm inline-block w-2/5'
-        >
-          {event.actualDateOfEvent
-            ? eventDate(event.actualDateOfEvent)
-            : "Unknown"}
-        </label>
-      </li>
-              </div>
-    );
-  });
 
 
 
@@ -239,15 +239,12 @@ const paginate = (pageNumber) => {
             <h6 className='w-3/5 text-center'>Description</h6>
             <h6 className='w-2/5 text-center'>Date</h6>
           </div>
-          <div className=''>
           {listOfEvents}
-          </div>
         </ol>
-       {currentPost.length > 0 && <Pagination 
-              postsPerPage={props.postsPerPage}
-              totalPosts={events.length}
-              paginate={paginate}
-              />}
+          <div className=''>
+          {props.paginate}
+          </div>
+
       </div>
     </div>
   );

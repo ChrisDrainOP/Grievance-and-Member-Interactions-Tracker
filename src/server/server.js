@@ -53,7 +53,8 @@ const sess = {
   resave: true,
   saveunitialized: true,
   cookie: {
-    httpOnly: true,
+    sameSite:'lax',
+    //httpOnly: true,
     //secure: true,
     //maxAge: 14 * 24 * 60 * 60 * 1000,
   },

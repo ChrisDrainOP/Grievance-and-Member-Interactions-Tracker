@@ -14,3 +14,13 @@
 .task-number-icon-blue {
   @apply bg-blue-300 px-0.5 rounded-xl text-blue-900 font-bold;
 }
+
+.pagination {
+  @apply flex w-1/2 mx-auto mt-3
+}
+.page-number {
+ @apply p-1 
+}
+.active{
+  @apply bg-purple-400
+}

@@ -2,6 +2,8 @@ import { React, useState, useEffect } from "react";
 import GrievanceListContainer from "./GrievanceListContainer.js";
 import GrievanceTableContainer from "./GrievanceTableContainer";
 import GrievanceFormContainer from "./GrievanceFormContainer";
+import ReactPaginate from "react-paginate";
+
 
 
 const HomePage = ({ history, ...props }) => {
@@ -10,10 +12,13 @@ const HomePage = ({ history, ...props }) => {
   const [meetings, setMeetings] = useState([]);
   const [listType, setListType] = useState([]);
   const [listName, setListName] = useState("");
+  const [meetingsClicked, setMettingsClicked] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostsPerPage] = useState(8);
+  const [currentPost, setCurrentPost] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [perPage, setPerPage] = useState(8);
+  const [pageCount, setPageCount] = useState(0)
 
   //Profile information is brought in from /server/routers/index.js
 
@@ -48,6 +53,7 @@ const HomePage = ({ history, ...props }) => {
     setImage(data.image);
 
     setMeetings([...data.userTasks]);
+
   };
 
   const handleMeetingListClick = (e) => {
@@ -55,37 +61,44 @@ const HomePage = ({ history, ...props }) => {
       case "total":
         setListType(meetings);
         setListName("View All");
-        handleClick()
+        setMettingsClicked(true)
+        
         break;
       case "incidentsAndInteractions":
         setListType(incidentsAndInteractions);
         setListName("Incidents and Interactions");
-        handleClick()
+        setMettingsClicked(true)
+        
         break;
       case "stepOnes":
         setListType(stepOnes);
         setListName("Step 1");
-        handleClick()
+        setMettingsClicked(true)
+        
         break;
       case "stepTwos":
         setListType(stepTwos);
         setListName("Step 2");
-        handleClick()
+        setMettingsClicked(true)
+        
         break;
       case "stepTwoToArbitration":
         setListType(stepTwoToArbitrations);
         setListName("Step 2 to Arbitration");
-        handleClick()
+        setMettingsClicked(true)
+        
         break;
       case "stepThreeAppeal":
         setListType(stepThreeAppeal);
         setListName("Step 3 Appeal");
-        handleClick()
+        setMettingsClicked(true)
+        
         break;
       case "miscellaneous":
         setListType(miscellaneous);
         setListName("Miscellaneous");
-        handleClick()
+        setMettingsClicked(true)
+        
         break;
     }
   };
@@ -139,6 +152,12 @@ const HomePage = ({ history, ...props }) => {
     return acc;
   }, []);
 
+//Handle pagination page click
+const handlePageClick = (e) => {
+  const selectedPage = e.selected;
+  setOffset(selectedPage+1)
+}
+
   return (
     /*This component contains the entire app*/
     <div className='main-gradient pt-2'>
@@ -154,20 +173,39 @@ const HomePage = ({ history, ...props }) => {
         stepThreeAppeal={stepThreeAppeal}
         miscellaneous={miscellaneous}
       />
-      <GrievanceTableContainer
+{meetingsClicked ?  <GrievanceTableContainer
         listType={listType}
         setListType={setListType}
         listName={listName}
         handleEventRowClick={handleEventRowClick}
         selectedEvent={selectedEvent}
         loadMeetings={loadMeetings}
+        handleClick={handleClick}
         loading={loading}
         setLoading={setLoading}
-        setPostsPerPage={setPostsPerPage}
-        postsPerPage={postsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+        currentPost={currentPost}
+        setCurrentPost={setCurrentPost}
+        listType={listType}
+        offset={offset}
+        perPage={perPage}
+        setPageCount={setPageCount}
+        paginate={
+        <ReactPaginate 
+          previousLabel={"Prev"}
+          nextLabel={"Next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+          pageClassName={"page-number"}
+          />}
+       
+      /> : null}
       {selectedEvent ? (
         <GrievanceFormContainer selectedEvent={selectedEvent} />
       ) : null}
